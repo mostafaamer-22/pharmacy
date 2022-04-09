@@ -4,7 +4,5 @@ module com.example.pharmacy {
 
 
     opens com.example.pharmacy to javafx.fxml;
-    exports com.example.pharmacy;
-    exports Controllers;
-    opens Controllers to javafx.fxml;
+    exports com.example.pharmacy ;
 }

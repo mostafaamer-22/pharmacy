@@ -1,0 +1,14 @@
+.label{
+    font-size: large;
+    color: white;
+    font-weight: bold;
+}
+
+.button{
+    -fx-background-color:  #483D8B;
+    -fx-font-size: 13;
+
+}
+.ToggleButton{
+    color: transparent;
+}
