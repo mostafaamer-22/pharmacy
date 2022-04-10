@@ -17,7 +17,7 @@ public class HelloController {
        try {
 
           FxmlLoader loader = new FxmlLoader();
-           Pane view = loader.getView("NewProductLeftFxml.fxml");
+           Pane view = loader.getView("NewProductFxml.fxml");
            mainPane.setCenter(view);
            System.out.println("success");
 
