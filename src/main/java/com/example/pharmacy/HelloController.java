@@ -1,14 +1,30 @@
 package com.example.pharmacy;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
+
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private BorderPane mainPane;
+
+   @FXML
+   public void  handleLoadNewProductScreen(ActionEvent event){
+       try {
+
+          FxmlLoader loader = new FxmlLoader();
+           Pane view = loader.getView("NewProductFxml.fxml");
+           mainPane.setLeft(view);
+           System.out.println("success");
+
+       }catch (Exception e){
+           System.out.println(e.toString());
+       }
     }
+
+
 }
