@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="logPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pharmacy.MainController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <Label text="Are you sure you want to logout" style="-fx-font-size: 20; -fx-text-fill: #483D8B;" />
+            <HBox alignment="CENTER" spacing="10">
+                <Button text="Yes" prefWidth="100" prefHeight="40" textFill="white"/>
+                <Button text="Cancel" prefWidth="100" prefHeight="40" onAction="#handleCancelScreen" textFill="white"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

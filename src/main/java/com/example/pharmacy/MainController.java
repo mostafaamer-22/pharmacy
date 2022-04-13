@@ -12,6 +12,9 @@ public class MainController {
     @FXML
     private BorderPane mainPane;
 
+    @FXML
+    private BorderPane logPane;
+
    @FXML
    public void  handleLoadNewProductScreen(ActionEvent event){
        try {
@@ -129,6 +132,34 @@ public class MainController {
             FxmlLoader loader = new FxmlLoader();
             Pane view = loader.getView("changepassword.fxml");
             mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML
+    public void  handleLogoutScreen(ActionEvent event){
+        try {
+
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("Logout.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML
+    public void  handleCancelScreen(ActionEvent event){
+        try {
+
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("Home.fxml");
+            logPane.setCenter(view);
             System.out.println("success");
 
         }catch (Exception e){
