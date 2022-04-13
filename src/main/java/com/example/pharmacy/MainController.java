@@ -96,7 +96,31 @@ public class MainController {
         }
     }
 
+    @FXML
+    public void  handleLoadSalesPropertyScreen(ActionEvent event){
+        try {
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("SalesPropertyFxml.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
 
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML
+    public void  handleLoadSalesReviewScreen(ActionEvent event){
+        try {
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("SalesReview.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
 
 
 }
