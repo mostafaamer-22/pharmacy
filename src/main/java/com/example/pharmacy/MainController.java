@@ -123,4 +123,18 @@ public class MainController {
     }
 
 
+    @FXML
+    public void  handleChangePasswordScreen(ActionEvent event){
+        try {
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("changepassword.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+
 }

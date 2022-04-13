@@ -118,7 +118,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="157.0" style="-fx-background-color: #00000000;" text="Change Password" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="157.0" style="-fx-background-color: #00000000;" text="Change Password" textFill="WHITE" onAction="#handleChangePasswordScreen">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
