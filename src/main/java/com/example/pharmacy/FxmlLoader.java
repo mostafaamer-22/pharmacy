@@ -12,7 +12,7 @@ public class FxmlLoader {
 
         try {
 
-            URL fileURl = Main.class.getResource(fileName);
+            URL fileURl = HelloApplication.class.getResource(fileName);
             if(fileURl == null)
             {
                 throw new java.io.FileNotFoundException("can`t be found");

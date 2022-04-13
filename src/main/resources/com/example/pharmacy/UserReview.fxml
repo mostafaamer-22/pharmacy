@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.MainController">
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pharmacy.HelloController"
+            prefHeight="400.0" prefWidth="600.0" >
     <top>
         <HBox alignment="CENTER_LEFT" style="-fx-background-color: #483D8B" BorderPane.alignment="CENTER">
             <children>
@@ -28,14 +29,14 @@
         </HBox>
     </top>
     <center>
-        <VBox spacing="20" style="-fx-background-color: #483D8B">
+        <VBox style="-fx-background-color: #483D8B" spacing="20">
             <HBox alignment="CENTER" spacing="10">
                 <Label text="Filter By Date :" textFill="white">
-                    <font>
-                        <Font name="Candara Italic" size="21.0" />
-                    </font>
+                        <font>
+                            <Font name="Candara Italic" size="21.0" />
+                        </font>
                 </Label>
-                <DatePicker />
+                <DatePicker/>
             </HBox>
             <TableView prefHeight="600">
                 <columnResizePolicy>
@@ -52,28 +53,28 @@
         </VBox>
     </center>
     <bottom>
-        <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="1026.0" style="-fx-background-color: #483D8B" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="1026.0" BorderPane.alignment="CENTER" style="-fx-background-color: #483D8B">
             <children>
-                <Button mnemonicParsing="false" prefHeight="100" prefWidth="200" style="-fx-background-color: #483D8B;" text="Delete Data" textFill="WHITE">
+                <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Delete Data" textFill="WHITE" prefWidth="200" prefHeight="100">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/delete.png" />
+                                <Image url="@icons/Delete_Data .png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" prefHeight="100" prefWidth="200" style="-fx-background-color: #483D8B;" text="Refresh Data" textFill="WHITE">
+                <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Refresh Data" textFill="WHITE" prefWidth="200" prefHeight="100">
                     <font>
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/refresh.png" />
+                                <Image url="@icons/Refresh_Data .png" />
                             </image>
                         </ImageView>
                     </graphic>
