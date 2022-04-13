@@ -68,5 +68,33 @@ public class HelloController {
         }
     }
 
+    @FXML
+    public void  handleLoadHomeScreen(ActionEvent event){
+        try {
+
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("Home.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+    @FXML
+    public void  handleLoadLoginScreen(ActionEvent event){
+        try {
+
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("Login.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
 
 }

@@ -34,7 +34,7 @@
                         <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Button mnemonicParsing="false"  prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text="Home" textFill="WHITE">
+                  <Button mnemonicParsing="false"  prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text="Home" textFill="WHITE" onAction="#handleLoadHomeScreen">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -130,7 +130,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text="Login" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text="Login" textFill="WHITE" onAction="#handleLoadLoginScreen">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -160,6 +160,22 @@
                </BorderPane.margin>
             </HBox>
          </top>
+         <center>
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="368.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/Pharmacy.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="54.0" prefWidth="111.0" text="Kabsula" textFill="#473d8a" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold Italic" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
