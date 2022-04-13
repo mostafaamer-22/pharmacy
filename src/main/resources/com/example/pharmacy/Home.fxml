@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="HomePane"  xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pharmacy.HelloController">
+<BorderPane fx:id="HomePane"  xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pharmacy.MainController">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
