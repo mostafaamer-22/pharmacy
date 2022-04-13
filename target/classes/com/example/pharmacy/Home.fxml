@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="368.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icons/Pharmacy.png" />
+                  <Image url="@icons/Pharmacy.png"/>
                </image>
             </ImageView>
             <Label prefHeight="54.0" prefWidth="111.0" text="Kabsula" textFill="#473d8a" VBox.vgrow="ALWAYS">
