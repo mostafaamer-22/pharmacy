@@ -1,4 +1,5 @@
-package com.example.pharmacy;
+package com.example.pharmacy.Controllers;
+import com.example.pharmacy.FxmlLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

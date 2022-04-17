@@ -1,11 +1,11 @@
 package com.example.pharmacy;
-
+import com.example.pharmacy.DatabaseConnection.DataBaseDriver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.sql.Statement;
 
 public class Main extends Application {
     @Override
@@ -18,6 +18,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Statement statement;
+        statement = DataBaseDriver.connectDataBase();
         launch();
     }
 }
