@@ -1,9 +1,12 @@
 package com.example.pharmacy.DatabaseConnection;
+import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
+
 import  java.sql.*;
 public class DataBaseDriver {
 
 
-  static  Statement statement = null;
+  static public Statement statement = null;
+  static public Connection connection;
 
   static public Statement  connectDataBase(){
          try {
@@ -36,3 +39,5 @@ public class DataBaseDriver {
 
 
 }
+
+
