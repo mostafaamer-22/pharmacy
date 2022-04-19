@@ -236,6 +236,18 @@
                                 </ImageView>
                             </graphic>
                         </Button>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Update Data" textFill="WHITE" prefWidth="200" prefHeight="100">
+                            <font>
+                                <Font name="System Bold Italic" size="15.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@icons/Refresh_Data .png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
                         <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text=" Delete Item" textFill="WHITE">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
