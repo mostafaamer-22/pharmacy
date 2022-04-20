@@ -4,11 +4,13 @@ import com.example.pharmacy.DatabaseConnection.DataBaseDriver;
 
 import com.example.pharmacy.Exception.Exception;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataBaseManipulation {
 
     private String queryStatement;
+    public ResultSet resultSet;
 
     public DataBaseManipulation (String query)
     {
@@ -26,6 +28,21 @@ public class DataBaseManipulation {
             Exception.printingSqlErrors(e);
         }
 
+    }
+
+    public  ResultSet executeStatementSelect()
+    {
+        try {
+            if (queryStatement != null)
+               resultSet = DataBaseDriver.statement.executeQuery(queryStatement);
+            else
+                System.out.println("query Statement is Null");
+        }catch (java.lang.Exception e)
+        {
+            System.out.println(e.toString());
+        }
+
+        return resultSet;
     }
 
 }

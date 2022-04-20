@@ -15,7 +15,7 @@ public class DataBaseDriver {
              printAlterSuccess();
          }catch (Exception e)
          {
-             printException(e);
+             System.out.println(e.toString());
          }
 
       return returnStatement(statement);
@@ -32,10 +32,6 @@ public class DataBaseDriver {
       return  statement;
   }
 
-  static public  void  printException(Exception e)
-  {
-        e.printStackTrace();
-  }
 
 
 }

@@ -2,11 +2,10 @@ package com.example.pharmacy.Exception;
 
 import java.sql.SQLException;
 
-public  class Exception
-{
+public  class Exception extends Throwable {
     static public void printingSqlErrors(SQLException exception)
     {
-        exception.fillInStackTrace();
+        System.out.println(exception.toString());
     }
 
     static public void printingGeneralErrors(Exception exception)
