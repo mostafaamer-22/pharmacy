@@ -1,15 +1,12 @@
-package com.example.pharmacy.DataBaseManipulation;
-
-import com.example.pharmacy.DatabaseConnection.DataBaseDriver;
-
+package com.example.pharmacy.Database;
 import com.example.pharmacy.Exception.Exception;
-
+import com.example.pharmacy.HandlerEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataBaseManipulation {
 
-    private String queryStatement;
+    final String queryStatement;
     public ResultSet resultSet;
 
     public DataBaseManipulation (String query)
@@ -17,14 +14,16 @@ public class DataBaseManipulation {
         queryStatement = query;
     }
 
-
     public void manipulateDataBase() {
 
         try {
-            if (queryStatement != null)
+            if (queryStatement != null){
                 DataBaseDriver.statement.execute(queryStatement);
+                HandlerEvent.showAlertSuccess();
+            }
         }catch (SQLException e)
         {
+            HandlerEvent.showAlertError();
             Exception.printingSqlErrors(e);
         }
 
@@ -39,7 +38,7 @@ public class DataBaseManipulation {
                 System.out.println("query Statement is Null");
         }catch (java.lang.Exception e)
         {
-            System.out.println(e.toString());
+            System.out.println(e.getMessage());
         }
 
         return resultSet;

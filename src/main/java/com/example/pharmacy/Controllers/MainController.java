@@ -1,11 +1,7 @@
 package com.example.pharmacy.Controllers;
-import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
 import com.example.pharmacy.FxmlLoader;
-import com.example.pharmacy.Models.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 

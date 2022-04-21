@@ -1,5 +1,5 @@
 package com.example.pharmacy;
-import com.example.pharmacy.DatabaseConnection.DataBaseDriver;
+import com.example.pharmacy.Database.DataBaseDriver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

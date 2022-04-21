@@ -1,5 +1,4 @@
-package com.example.pharmacy.DatabaseConnection;
-import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
+package com.example.pharmacy.Database;
 
 import  java.sql.*;
 public class DataBaseDriver {
