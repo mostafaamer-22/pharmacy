@@ -1,6 +1,6 @@
-package com.example.pharmacy.Sales;
+package com.example.pharmacy.Models;
 
-public class SalesModel {
+public class SalesReviewModel {
 
     private int cureCode;
     private String cureName;
@@ -8,34 +8,24 @@ public class SalesModel {
     private int tapsNumber;
     private int retailPrice;
     private int totalPrice;
-    private int billPrice;
+    private int employeeSSN;
+    private String date;
 
-    public SalesModel(int cureCode, String cureName, int amount, int tapsNumber, int retailPrice, int totalPrice) {
+    public SalesReviewModel(int cureCode , String cureName , int amount , int tapsNumber ,  String date , int retailPrice , int totalPrice , int employeeSSN ) {
         this.cureCode = cureCode;
         this.cureName = cureName;
         this.amount = amount;
         this.tapsNumber = tapsNumber;
         this.retailPrice = retailPrice;
         this.totalPrice = totalPrice;
-    }
-
-    public SalesModel()
-    {
-
-    }
-
-    static public SalesModel makeObject(int cureCode , String cureName , int amount , int tapsNumber , int retailPrice , int totalPrice)
-    {
-        return new SalesModel(cureCode , cureName , amount , tapsNumber , retailPrice , totalPrice);
+        this.employeeSSN = employeeSSN;
+        this.date = date;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    public void setBillPrice(int billPrice) {
-        this.billPrice = billPrice;
-    }
 
     public void setCureCode(int cureCode) {
         this.cureCode = cureCode;
@@ -57,12 +47,16 @@ public class SalesModel {
         this.totalPrice = totalPrice;
     }
 
-    public int getAmount() {
-        return amount;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getBillPrice() {
-        return billPrice;
+    public void setEmployeeSSN(int employeeSSN) {
+        this.employeeSSN = employeeSSN;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public int getCureCode() {
@@ -83,5 +77,13 @@ public class SalesModel {
 
     public String getCureName() {
         return cureName;
+    }
+
+    public int getEmployeeSSN() {
+        return employeeSSN;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

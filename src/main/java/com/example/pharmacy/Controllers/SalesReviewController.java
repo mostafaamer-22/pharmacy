@@ -1,7 +1,7 @@
 package com.example.pharmacy.Controllers;
 
 
-import com.example.pharmacy.Sales.SalesReviewModel;
+import com.example.pharmacy.Models.SalesReviewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

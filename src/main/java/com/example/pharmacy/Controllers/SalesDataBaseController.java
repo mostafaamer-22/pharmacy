@@ -1,14 +1,9 @@
 package com.example.pharmacy.Controllers;
-
 import com.example.pharmacy.Calculaion.CalculateBill;
-import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
+import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
-import com.example.pharmacy.Sales.SalesModel;
-
-
+import com.example.pharmacy.Models.SalesModel;
 import javafx.scene.control.*;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -43,7 +38,7 @@ public class SalesDataBaseController extends SalesController{
 
     public  void updateAmountOfCure(int amount, int cureCode)
     {
-        String query = "update product set amount = '"+amount+"' where curecode = '"+cureCode+"'";
+        String query = "update product set amount = '"+amount+"' where cure_code = '"+cureCode+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
@@ -58,7 +53,7 @@ public class SalesDataBaseController extends SalesController{
 
     public  int getLastSaleCode()
     {
-        String query = "select salecodes from codes";
+        String query = "select sale_codes from codes";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         return  dataBaseManipulation.getLastSaleCodeFromDataBase();
     }
@@ -75,14 +70,14 @@ public class SalesDataBaseController extends SalesController{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         System.out.println(salesModel.getTapsNumber());
         String query = "insert into sales values('"+saleInformation.getCureCode()+"' , '"+saleInformation.getCureName()+"' , '"+salesModel.getAmount()+"' , '"+salesModel.getTapsNumber()+"' ,'"+saleInformation.getRetailPrice()+"' , '"+saleInformation.getTotalPrice()+"' , '"+ LocalDate.now().toString() +
-        "' , 1 , '"+saleCode+"' , '"+saleInformation.getTapsNumber()+"')";
+        "' , 1002 , '"+saleCode+"' , '"+saleInformation.getTapsNumber()+"')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
 
     public  ArrayList getCureDataFromDataBase(SalesModel salesModel)
     {
-        String query = "select * from product where curecode = '"+salesModel.getCureCode()+"'";
+        String query = "select * from product where cure_code = '"+salesModel.getCureCode()+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         ArrayList listOfData = dataBaseManipulation.showData();
         if (listOfData != null)
@@ -96,16 +91,16 @@ public class SalesDataBaseController extends SalesController{
 
     public  void getSalesDataFromDataBase(int condition)
     {
-        String query = "select curecode , curename , amount , tapsnumber , retailprice , totalprice from sales where salecode = '"+condition+"'";
+        String query = "select cure_code , cure_name , amount , taps_number , retail_price , total_price from sales where sale_code = '"+condition+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
         salesDataToShow.clear();
         try {
             while (resultSet.next())
             {
-                salesDataToShow.add(SalesModel.makeObject(resultSet.getInt("curecode") ,
-                        resultSet.getString("curename") , resultSet.getInt("amount") , resultSet.getInt("tapsnumber") ,
-                        resultSet.getInt("retailprice"),resultSet.getInt("totalprice")));
+                salesDataToShow.add(SalesModel.makeObject(resultSet.getInt("cure_code") ,
+                        resultSet.getString("cure_name") , resultSet.getInt("amount") , resultSet.getInt("taps_number") ,
+                        resultSet.getInt("retail_price"),resultSet.getInt("total_price")));
             }
         }catch (SQLException sqlException)
         {
@@ -122,7 +117,7 @@ public class SalesDataBaseController extends SalesController{
 
     public  void calculateBill(int condition)
     {
-        String query = "select totalprice , tapsnumber , amount , tapsNumberPerCure from sales where salecode = '"+condition+"'";
+        String query = "select total_price , taps_number , amount , taps_Number_Per_Cure from sales where sale_code = '"+condition+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
         showBillAlertAndPrice(CalculateBill.calculateBill(resultSet));
@@ -153,7 +148,7 @@ public class SalesDataBaseController extends SalesController{
 
     public  void updateDataOfBill()
     {
-        String query = "update sales set amount = '"+Integer.parseInt(amount.getText())+"' where salecode = '"+Integer.parseInt(saleCode.getText())+"' and curecode = '"+Integer.parseInt(cureCode.getText())+"'";
+        String query = "update sales set amount = '"+Integer.parseInt(amount.getText())+"' where sale_code = '"+Integer.parseInt(saleCode.getText())+"' and cure_code = '"+Integer.parseInt(cureCode.getText())+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
         getSalesDataFromDataBase(getLastSaleCode());
@@ -170,7 +165,7 @@ public class SalesDataBaseController extends SalesController{
 
     public  void updateSaleCode()
     {
-        String query = "select salecode from sales where salecode = '"+Integer.parseInt(saleCode.getText())+"'";
+        String query = "select sale_code from sales where sale_code = '"+Integer.parseInt(saleCode.getText())+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
         try {
@@ -185,14 +180,14 @@ public class SalesDataBaseController extends SalesController{
 
     public  void deleteSaleCode()
     {
-        String query = "delete from codes where salecodes = '"+Integer.parseInt(saleCode.getText())+"'";
+        String query = "delete from codes where sale_codes = '"+Integer.parseInt(saleCode.getText())+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
 
     public  void DeleteDataOfBill()
     {
-        String query = "delete from sales where salecode = '"+Integer.parseInt(saleCode.getText())+"' and curecode = '"+Integer.parseInt(cureCode.getText())+"'";
+        String query = "delete from sales where sale_code = '"+Integer.parseInt(saleCode.getText())+"' and cure_code = '"+Integer.parseInt(cureCode.getText())+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
         getSalesDataFromDataBase(getLastSaleCode());

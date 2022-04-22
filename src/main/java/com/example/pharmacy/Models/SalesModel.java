@@ -1,6 +1,6 @@
-package com.example.pharmacy.Sales;
+package com.example.pharmacy.Models;
 
-public class SalesReviewModel {
+public class SalesModel {
 
     private int cureCode;
     private String cureName;
@@ -8,24 +8,34 @@ public class SalesReviewModel {
     private int tapsNumber;
     private int retailPrice;
     private int totalPrice;
-    private int employeeSSN;
-    private String date;
+    private int billPrice;
 
-    public SalesReviewModel(int cureCode , String cureName , int amount , int tapsNumber ,  String date , int retailPrice , int totalPrice , int employeeSSN ) {
+    public SalesModel(int cureCode, String cureName, int amount, int tapsNumber, int retailPrice, int totalPrice) {
         this.cureCode = cureCode;
         this.cureName = cureName;
         this.amount = amount;
         this.tapsNumber = tapsNumber;
         this.retailPrice = retailPrice;
         this.totalPrice = totalPrice;
-        this.employeeSSN = employeeSSN;
-        this.date = date;
+    }
+
+    public SalesModel()
+    {
+
+    }
+
+    static public SalesModel makeObject(int cureCode , String cureName , int amount , int tapsNumber , int retailPrice , int totalPrice)
+    {
+        return new SalesModel(cureCode , cureName , amount , tapsNumber , retailPrice , totalPrice);
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
     }
 
+    public void setBillPrice(int billPrice) {
+        this.billPrice = billPrice;
+    }
 
     public void setCureCode(int cureCode) {
         this.cureCode = cureCode;
@@ -47,16 +57,12 @@ public class SalesReviewModel {
         this.totalPrice = totalPrice;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setEmployeeSSN(int employeeSSN) {
-        this.employeeSSN = employeeSSN;
-    }
-
     public int getAmount() {
         return amount;
+    }
+
+    public int getBillPrice() {
+        return billPrice;
     }
 
     public int getCureCode() {
@@ -77,13 +83,5 @@ public class SalesReviewModel {
 
     public String getCureName() {
         return cureName;
-    }
-
-    public int getEmployeeSSN() {
-        return employeeSSN;
-    }
-
-    public String getDate() {
-        return date;
     }
 }
