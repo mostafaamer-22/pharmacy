@@ -1,6 +1,4 @@
 package com.example.pharmacy.Controllers;
-import com.example.pharmacy.Database.DataBaseManipulation;
-import com.example.pharmacy.Database.DataBaseProduct;
 import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.Product;
 import javafx.collections.FXCollections;
@@ -12,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductController implements Initializable {
+public class ProductController  implements Initializable {
 
     @FXML
     protected TextField CureCode;
@@ -77,29 +75,21 @@ public class ProductController implements Initializable {
     @FXML
     protected TableColumn<?,?> columnTotalPrice;
 
-    public ObservableList<Product> data;
+    public  ObservableList<Product> data;
 
+    Product product = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
             data = FXCollections.observableArrayList();
             setProductInCellTable();
-            DataBaseProduct.loadDataFromDatabase(data,table);
+            ManipulationProductController.loadDataFromDatabase(data,table);
     }
 
-    @FXML
-    public void AddProduct() {
-        Product product = new Product(Integer.parseInt(CureCode.getText()), CureName.getText(), CompanyName.getText(), DistributorName.getText(), Integer.parseInt(DistributorNumber.getText()), Integer.parseInt(Amount.getText()), "2024", Integer.parseInt(TapsNumber.getText()), Integer.parseInt(RetailPrice.getText()), Integer.parseInt(TotalPrice.getText()));
-        String sql = "insert into product values('" + product.getCureCode() + "' , '" + product.getCureName() + "' , '" + product.getCompanyName() + "' , '" + product.getDistributorName() + "' ,'" + product.getDistributorNumber() + "' , '" + product.getAmount() + "' , '" + product.getTapsNumber() + "', '" + product.getExpireDate() + "' , '" + product.getRetailPrice() + "', '" + product.getTotalPrice() + "')";
-        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(sql);
-        dataBaseManipulation.manipulateDataBase();
-        setProductInCellTable();
-        DataBaseProduct.loadDataFromDatabase(data,table);
-    }
 
     @FXML
-    public  void  clearTextFieldProduct()
+    public  void clearNewProductTextField()
     {
         CureCode.clear();
         CureName.clear();
@@ -127,6 +117,33 @@ public class ProductController implements Initializable {
         columnTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("ExpireDate"));
         columnRetailPrice.setCellValueFactory(new  PropertyValueFactory<>("RetailPrice"));
         columnTotalPrice.setCellValueFactory(new  PropertyValueFactory<>("TotalPrice"));
+    }
+
+    public void setManipulationProductInTextField() {
+        CureName.setText(product.getCureName());
+        CompanyName.setText(product.getCompanyName());
+        DistributorName.setText(product.getDistributorName());
+        DistributorNumber.setText(String.valueOf(product.getDistributorNumber()));
+        Amount.setText(String.valueOf(product.getAmount()));
+        TapsNumber.setText(String.valueOf(product.getTapsNumber()));
+        ExpireDate.getEditor().setText(product.getExpireDate());
+        RetailPrice.setText(String.valueOf(product.getRetailPrice()));
+        TotalPrice.setText(String.valueOf(product.getTotalPrice()));
+
+    }
+
+    @FXML
+    public void clearManipulationProductTextField() {
+        CureName.clear();
+        CompanyName.clear();
+        DistributorName.clear();
+        DistributorNumber.clear();
+        TapsNumber.clear();
+        TotalPrice.clear();
+        RetailPrice.clear();
+        Amount.clear();
+        ExpireDate.getEditor().clear();
+        HandlerEvent.showAlertSuccess();
     }
 
 

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -215,7 +214,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100" prefWidth="300" style="-fx-background-color: #483D8B;" text="clear Data" textFill="WHITE" onAction="#clearTextFieldProduct">
+                        <Button mnemonicParsing="false" prefHeight="100" prefWidth="300" style="-fx-background-color: #483D8B;" text="clear Data" textFill="WHITE" onAction="#clearManipulationProductTextField">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
