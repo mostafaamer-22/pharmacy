@@ -108,4 +108,11 @@ public class ManipulationProductController extends ProductController {
         table.setItems(data);
 
     }
+
+    @FXML
+    public void Reset()
+    {
+        setProductInCellTable();
+        loadDataFromDatabase(data,table);
+    }
 }
