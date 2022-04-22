@@ -6,7 +6,7 @@ public  class Exception
 {
     static public void printingSqlErrors(SQLException exception)
     {
-        exception.fillInStackTrace();
+        System.out.println(exception.toString());
     }
 
     static public void printingGeneralErrors(Exception exception)

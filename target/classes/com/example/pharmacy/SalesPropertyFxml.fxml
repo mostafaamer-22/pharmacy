@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="643.0" prefWidth="1025.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx" fx:controller="com.example.pharmacy.Controllers.MainController">
+<AnchorPane prefHeight="643.0" prefWidth="1025.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"  fx:controller="com.example.pharmacy.Controllers.SalesDataBaseController" >
     <children>
         <BorderPane layoutX="-1.0" layoutY="1.0" minWidth="-Infinity" prefHeight="506.0" prefWidth="360.0" style="-fx-background-color: #483D8B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -41,7 +41,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="26.0" prefWidth="168.0" />
+                                <TextField prefHeight="26.0" prefWidth="168.0" fx:id="cureCode"/>
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -54,7 +54,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" />
+                                <TextField prefWidth="168.0" fx:id="cureName" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -67,7 +67,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" />
+                                <TextField prefWidth="168.0" fx:id="amount"/>
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -80,7 +80,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" />
+                                <TextField prefWidth="168.0" fx:id="tapsNumber"/>
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -96,7 +96,7 @@
                                         <Insets />
                                     </HBox.margin>
                                 </Label>
-                                <TextField prefWidth="168.0" />
+                                <TextField prefWidth="168.0" fx:id="retailPrice"/>
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -109,7 +109,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" />
+                                <TextField prefWidth="168.0" fx:id="totalPrice"/>
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -122,7 +122,7 @@
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField prefWidth="168.0" />
+                        <TextField prefWidth="168.0" fx:id="saleCode"/>
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -152,17 +152,17 @@
             <center>
                 <HBox prefHeight="602.0" prefWidth="411.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                     <children>
-                        <TableView HBox.hgrow="ALWAYS">
+                        <TableView HBox.hgrow="ALWAYS" fx:id="tableSales">
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                             <columns>
-                                <TableColumn prefWidth="75.0" text="Cure Code" />
-                                <TableColumn prefWidth="75.0" text="Cure Name" />
-                                <TableColumn prefWidth="75.0" text="Amount" />
-                                <TableColumn prefWidth="75.0" text="Taps Number" />
-                                <TableColumn prefWidth="75.0" text="Retail price" />
-                                <TableColumn prefWidth="75.0" text="Total price" />
+                                <TableColumn prefWidth="75.0" text="Cure Code"  fx:id="cureCodeColumn"/>
+                                <TableColumn prefWidth="75.0" text="Cure Name" fx:id="cureNameColumn" />
+                                <TableColumn prefWidth="75.0" text="Amount" fx:id="amountColumn"/>
+                                <TableColumn prefWidth="75.0" text="Taps Number" fx:id="tapsNumberColumn"/>
+                                <TableColumn prefWidth="75.0" text="Retail price" fx:id="retailPriceColumn"/>
+                                <TableColumn prefWidth="75.0" text="Total price" fx:id="totalPriceColumn"/>
                             </columns>
                         </TableView>
                     </children>
@@ -171,7 +171,7 @@
             <bottom>
                 <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label prefWidth="150.0" text="Bill Price:  100" textFill="WHITE">
+                        <Label prefWidth="150.0" text="Bill Price: " fx:id="billPrice" textFill="WHITE">
                             <padding>
                                 <Insets left="10.0" />
                             </padding>
@@ -179,7 +179,7 @@
                                 <Font name="System Bold Italic" size="14.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Calculate Bill" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Calculate Bill" textFill="WHITE" onAction="#calculateBillToUser">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -194,7 +194,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Add To Bill" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Add To Bill" textFill="WHITE" onAction="#getDataFromDataBase">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -209,7 +209,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="New Bill" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="New Bill" textFill="WHITE" onAction="#changeSaleCode">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -224,7 +224,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Clear" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Clear" textFill="WHITE" onAction="#clearTextFieldDataAndTableData">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -236,7 +236,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Update Data" textFill="WHITE" prefWidth="200" prefHeight="100">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Update Data" textFill="WHITE" prefWidth="200" prefHeight="100" onAction="#handleUpdateDataOfBill">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -248,7 +248,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text=" Delete Item" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text=" Delete Item" textFill="WHITE" onAction="#handleDeleteDataOfBill">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>

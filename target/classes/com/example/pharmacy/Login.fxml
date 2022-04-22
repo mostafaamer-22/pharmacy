@@ -22,17 +22,17 @@
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></Label>
-            <TextField maxWidth="300" />
+            <TextField maxWidth="300"  />
             </HBox>
             <HBox alignment="CENTER" prefWidth="150.0" spacing="5">
             <Label prefWidth="150.0" text="Password" textFill="#483D8B">
                <font>
                   <Font name="System Bold Italic" size="17.0" />
                </font></Label>
-            <PasswordField maxWidth="300" />
+            <PasswordField maxWidth="300"  />
             </HBox>
             <HBox alignment="CENTER" spacing="5">
-                <Button prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #483D8B;" text="Login" textFill="white">
+                <Button prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #483D8B;" text="Login" textFill="white" >
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></Button>

@@ -1,4 +1,5 @@
 package com.example.pharmacy;
+import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
 import com.example.pharmacy.DatabaseConnection.DataBaseDriver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,9 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         Statement statement;
-        statement = DataBaseDriver.connectDataBase();
+        DataBaseDriver.connectDataBase();
         launch();
+
+
     }
 }
