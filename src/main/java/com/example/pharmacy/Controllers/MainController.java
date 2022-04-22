@@ -2,9 +2,6 @@ package com.example.pharmacy.Controllers;
 import com.example.pharmacy.FxmlLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -29,7 +26,7 @@ public class MainController {
            System.out.println("success");
 
        }catch (Exception e){
-           System.out.println(e.toString());
+          e.printStackTrace();
        }
     }
 
@@ -43,7 +40,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -57,7 +54,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -71,7 +68,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -85,7 +82,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -99,7 +96,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -112,7 +109,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -125,7 +122,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -139,7 +136,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -153,7 +150,7 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
@@ -167,11 +164,12 @@ public class MainController {
             System.out.println("success");
 
         }catch (Exception e){
-            System.out.println(e.toString());
+            e.printStackTrace();
         }
     }
 
 
 
-
 }
+
+

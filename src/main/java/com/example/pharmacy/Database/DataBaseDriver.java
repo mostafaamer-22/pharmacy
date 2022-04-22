@@ -1,5 +1,4 @@
-package com.example.pharmacy.DatabaseConnection;
-import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
+package com.example.pharmacy.Database;
 
 import  java.sql.*;
 public class DataBaseDriver {
@@ -15,7 +14,7 @@ public class DataBaseDriver {
              printAlterSuccess();
          }catch (Exception e)
          {
-             printException(e);
+             System.out.println(e.toString());
          }
 
       return returnStatement(statement);
@@ -32,10 +31,6 @@ public class DataBaseDriver {
       return  statement;
   }
 
-  static public  void  printException(Exception e)
-  {
-        e.printStackTrace();
-  }
 
 
 }

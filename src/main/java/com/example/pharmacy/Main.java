@@ -1,6 +1,5 @@
 package com.example.pharmacy;
-import com.example.pharmacy.DataBaseManipulation.DataBaseManipulation;
-import com.example.pharmacy.DatabaseConnection.DataBaseDriver;
+import com.example.pharmacy.Database.DataBaseDriver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,9 +19,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         Statement statement;
-        DataBaseDriver.connectDataBase();
+        statement = DataBaseDriver.connectDataBase();
         launch();
-
-
     }
 }
