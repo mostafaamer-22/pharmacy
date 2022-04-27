@@ -1,4 +1,5 @@
 package com.example.pharmacy.Controllers;
+import com.example.pharmacy.Models.Product;
 import com.example.pharmacy.Models.SalesModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -114,7 +115,7 @@ public class SalesController extends MainController implements Initializable{
     }
 
 
-    public  void putDataToUser(ArrayList<SalesModel> list)
+    public  void putDataToUser(ArrayList<Product> list)
     {
         String x = String.valueOf(list.get(0).getTotalPrice());
         String y = String.valueOf(list.get(0).getRetailPrice());

@@ -1,23 +1,30 @@
 package com.example.pharmacy.Calculaion;
 
+import com.example.pharmacy.Controllers.SalesDataBaseController;
 import com.example.pharmacy.Exception.Exception;
+import com.example.pharmacy.Models.Product;
+import com.example.pharmacy.Models.SalesModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CalculateBill {
 
-    static public int calculateBill(ResultSet resultSet)
+    static public int calculateBill(ResultSet resultSet , int tapsNumberPerCure)
     {
         int billValue = 0;
         try {
                 while (resultSet.next())
                 {
-                    if (resultSet.getInt("amount") != 0 && resultSet.getInt("tapsnumber") != 0)
+                    if (resultSet.getInt("amount") != 0 && resultSet.getInt("taps_number") != 0)
                     {
-                        billValue += calculateBillForAmountAndTapsNumber(resultSet);
+
+                        billValue += calculateBillForAmountAndTapsNumber(resultSet , tapsNumberPerCure);
                     }
-                    else billValue += calculateBillForAmountOrTapsNumber(resultSet);
+                    else {
+                        billValue += calculateBillForAmountOrTapsNumber(resultSet , tapsNumberPerCure);
+                    }
                 }
         }catch (SQLException sqlException)
         {
@@ -28,12 +35,12 @@ public class CalculateBill {
         return billValue;
     }
 
-    static private int calculateBillForAmountAndTapsNumber(ResultSet resultSet)
+    static private int calculateBillForAmountAndTapsNumber(ResultSet resultSet , int tapsNumberPerCure)
     {
         int billValue = 0;
         try {
-                billValue += resultSet.getInt("totalprice") * resultSet.getInt("amount");
-                billValue += resultSet.getInt("totalprice") / resultSet.getInt("tapsNumberPerCure");
+                billValue += resultSet.getInt("total_price") * resultSet.getInt("amount");
+                billValue += resultSet.getInt("total_price") / tapsNumberPerCure;
         }catch (SQLException sqlException)
         {
             Exception.printingSqlErrors(sqlException);
@@ -41,12 +48,12 @@ public class CalculateBill {
         return billValue;
     }
 
-    static private int calculateBillForAmountOrTapsNumber(ResultSet resultSet)
+    static private int calculateBillForAmountOrTapsNumber(ResultSet resultSet , int tapsNumberPerCure)
     {
         try {
             if (resultSet.getInt("amount") != 0)
                 return calculateBillAmount(resultSet);
-            else return calculateBillTapNumber(resultSet);
+            else return calculateBillTapNumber(resultSet , tapsNumberPerCure);
 
         }catch (SQLException sqlException)
         {
@@ -59,8 +66,7 @@ public class CalculateBill {
     {
         int billValue = 0;
         try {
-
-                billValue += resultSet.getInt("totalprice") * resultSet.getInt("amount");
+                billValue += resultSet.getInt("total_price") * resultSet.getInt("amount");
         }catch (SQLException sqlException)
         {
             Exception.printingSqlErrors(sqlException);
@@ -68,16 +74,16 @@ public class CalculateBill {
         return billValue;
     }
 
-    static private int calculateBillTapNumber(ResultSet resultSet)
+    static private int calculateBillTapNumber(ResultSet resultSet , int tapsNumberPerCure)
     {
         int billValue = 0;
         try {
-
-                billValue += resultSet.getInt("totalprice") / resultSet.getInt("tapsNumberPerCure");
+                billValue += resultSet.getInt("total_price") / tapsNumberPerCure;
         }catch (SQLException sqlException)
         {
             Exception.printingSqlErrors(sqlException);
         }
         return billValue;
     }
+
 }

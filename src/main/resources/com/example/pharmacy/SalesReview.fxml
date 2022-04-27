@@ -56,7 +56,7 @@
             <bottom>
                 <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Delete" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Delete" textFill="WHITE" onAction="#handleDeletingSales">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>

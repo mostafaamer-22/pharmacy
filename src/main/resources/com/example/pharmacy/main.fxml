@@ -34,7 +34,7 @@
                         <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#handleLoadHomeScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" Home" textFill="WHITE">
+                  <Button mnemonicParsing="false"  prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" Home" textFill="WHITE" onAction="#handleLoadHomeScreen">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -46,7 +46,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadNewProductScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" New Product" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadNewProductScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" New Product" textFill="WHITE" fx:id="newProduct">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -58,7 +58,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadUpdateDeleteScreen" prefHeight="59.0" prefWidth="134.0" selected="true" style="-fx-background-color: #00000000;" text=" Updata&amp;delete" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadUpdateDeleteScreen" prefHeight="59.0" prefWidth="134.0" selected="true" style="-fx-background-color: #00000000;" text=" Updata&amp;delete" textFill="WHITE" fx:id="updateAndDelete">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -70,7 +70,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadSalesPropertyScreen" prefHeight="59.0" prefWidth="130.0" style="-fx-background-color: #00000000;" text=" Sales property" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadSalesPropertyScreen" prefHeight="59.0" prefWidth="130.0" style="-fx-background-color: #00000000;" text=" Sales property" textFill="WHITE" fx:id="salesProperty">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -82,7 +82,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadSalesReviewScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" Sales review" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadSalesReviewScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" Sales review" textFill="WHITE" fx:id="salesReview">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -94,7 +94,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadAddUserScreen" prefHeight="59.0" prefWidth="131.0" style="-fx-background-color: #00000000;" text=" Add Employee" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadAddUserScreen" prefHeight="59.0" prefWidth="131.0" style="-fx-background-color: #00000000;" text=" Add Employee" textFill="WHITE" fx:id="addEmployee">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -106,7 +106,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadUserReviewScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" User review" textFill="WHITE">
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadUserReviewScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" User review" textFill="WHITE" fx:id="userReview">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>
@@ -118,7 +118,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="157.0" style="-fx-background-color: #00000000;" text=" Change Password" textFill="WHITE" onAction="#handleChangePasswordScreen">
+                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="157.0" style="-fx-background-color: #00000000;" text=" Change Password" textFill="WHITE" onAction="#handleChangePasswordScreen" fx:id="changePassword">
                      <font>
                         <Font name="Candara Bold Italic" size="12.0" />
                      </font>

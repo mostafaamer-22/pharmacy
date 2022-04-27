@@ -19,7 +19,7 @@ public class ManipulationProductController extends ProductController {
 
     @FXML
     public void AddProduct() {
-        Product product = new Product(Integer.parseInt(CureCode.getText()), CureName.getText(), CompanyName.getText(), DistributorName.getText(), Integer.parseInt(DistributorNumber.getText()), Integer.parseInt(Amount.getText()), "2024", Integer.parseInt(TapsNumber.getText()), Integer.parseInt(RetailPrice.getText()), Integer.parseInt(TotalPrice.getText()));
+        Product product = new Product(Integer.parseInt(CureCode.getText()), CureName.getText(), CompanyName.getText(), DistributorName.getText(), Integer.parseInt(DistributorNumber.getText()), Integer.parseInt(Amount.getText()), "2024", Integer.parseInt(TapsNumber.getText()), Integer.parseInt(RetailPrice.getText()), Integer.parseInt(TotalPrice.getText()) , 1001);
         String sql = "insert into product values('" + product.getCureCode() + "' , '" + product.getCureName() + "' , '" + product.getCompanyName() + "' , '" + product.getDistributorName() + "' ,'" + product.getDistributorNumber() + "' , '" + product.getAmount() + "' , '" + product.getTapsNumber() + "', '" + product.getExpireDate() + "' , '" + product.getRetailPrice() + "', '" + product.getTotalPrice() + "')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(sql);
         dataBaseManipulation.manipulateDataBase();
@@ -46,7 +46,8 @@ public class ManipulationProductController extends ProductController {
                         resultSet.getString(8),
                         resultSet.getInt(7),
                         resultSet.getInt(9),
-                        resultSet.getInt(10));
+                        resultSet.getInt(10),
+                        resultSet.getInt(11));
                 data.add(product);
                 setManipulationProductInTextField();
 
@@ -98,7 +99,8 @@ public class ManipulationProductController extends ProductController {
                         resultSet.getString(7),
                         resultSet.getInt(8),
                         resultSet.getInt(9),
-                        resultSet.getInt(10)
+                        resultSet.getInt(10),
+                        resultSet.getInt(11)
                 ));
             }
         }catch (Exception e)

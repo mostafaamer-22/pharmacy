@@ -41,4 +41,23 @@ public class SalesReviewDataBaseController extends SalesReviewController{
             showAlert();
         }
     }
+
+    public void handleDeletingSales()
+    {
+        if (!date.getText().isEmpty())
+        {
+            setTableCells();
+            salesDataToShow.clear();
+            deleteSalesByDate();
+        }else {
+            showAlert();
+        }
+    }
+
+    public void deleteSalesByDate()
+    {
+        String query = "delete from sales where date = '"+date.getText()+"'";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        dataBaseManipulation.manipulateDataBase();
+    }
 }

@@ -10,7 +10,7 @@ public class Product {
    private int TapsNumber;
    private int RetailPrice;
    private int TotalPrice;
-
+   private int totalTapsNumber;
 
 
     public Product(int CureCode,
@@ -22,7 +22,8 @@ public class Product {
                    String ExpireDate,
                    int TapsNumber,
                    int RetailPrice,
-                   int TotalPrice
+                   int TotalPrice,
+                   int totalTapsNumber
     ) {
 
         this.setCureCode(CureCode);
@@ -35,8 +36,22 @@ public class Product {
         this.setExpireDate(ExpireDate);
         this.setRetailPrice(RetailPrice);
         this.setTotalPrice(TotalPrice);
+        this.setTotalTapsNumber(totalTapsNumber);
     }
 
+
+    public Product()
+    {
+
+    }
+
+    public int getTotalTapsNumber() {
+        return totalTapsNumber;
+    }
+
+    public void setTotalTapsNumber(int totalTapsNumber) {
+        this.totalTapsNumber = totalTapsNumber;
+    }
 
     public int getCureCode() {
         return CureCode;
