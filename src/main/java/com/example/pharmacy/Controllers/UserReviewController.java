@@ -1,22 +1,22 @@
 package com.example.pharmacy.Controllers;
-
+import com.example.pharmacy.ControllerUi.UserReviewUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
 import com.example.pharmacy.Models.UserReviewModel;
 import javafx.scene.control.Alert;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
-public class UserReviewController extends UserReviewUiController{
+public class UserReviewController extends UserReviewUi {
 
-    static public void insertUser(int ssn)
+    static public void validateUserName(int ssn)
     {
-        if (getUserData(ssn) != null)
+        if (!getUserData(ssn).isEmpty())
         {
-           insertUserInUserReviewTable(ssn);
+            insertUserInUserReviewTable(ssn);
         }else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.show();
@@ -25,31 +25,35 @@ public class UserReviewController extends UserReviewUiController{
 
     static public void insertUserInUserReviewTable(int ssn)
     {
-        String qq = "un";
-        String query = "insert into userreview values('"+ssn+"' , '"+getUserData(ssn)+"' , '"+qq+"' , '"+ LocalDate.now().toString()+"' , '"+ LocalTime.now()+"')";
+        String login = "login";
+        ArrayList<String> info = new ArrayList<String>();
+        info = getUserData(ssn);
+        String query = "insert into userreview values('"+ssn+"' , '"+info.get(0)+"' , '"+login+"' , '"+ LocalDate.now().toString()+"' , '"+ LocalTime.now()+"' , '"+info.get(1)+"')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
 
-    static  public String getUserData(int ssn)
+    static  public ArrayList<String> getUserData(int ssn)
     {
-        String query = "select fname from user where '"+ssn+"'";
+        String query = "select fname , position from user where ssn = '"+ssn+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
-        return getFirstName(dataBaseManipulation.executeStatementSelect());
+        return appendFirstNameAndPosition(dataBaseManipulation.executeStatementSelect());
     }
 
-    static public String getFirstName(ResultSet resultSet)
+    static public ArrayList<String> appendFirstNameAndPosition(ResultSet resultSet)
     {
+        ArrayList<String> userInfo = new ArrayList<String>();
         try {
             if (resultSet.next())
             {
-                return resultSet.getString("fname");
+                userInfo.add(resultSet.getString("fname"));
+                userInfo.add(resultSet.getString("position"));
             }
         }catch (SQLException sqlException)
         {
             Exception.printingSqlErrors(sqlException);
         }
-        return null;
+        return userInfo;
     }
 
     public void getUsers()
@@ -57,13 +61,6 @@ public class UserReviewController extends UserReviewUiController{
         setTableCells();
         if (!date.getText().isEmpty())
             getUsersFromDataBaseByDate();
-    }
-
-    public void getUsersFromDataBse()
-    {
-        String query = "select * from userreview";
-        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
-        addUsersToArrayList(dataBaseManipulation.executeStatementSelect());
     }
 
     public void addUsersToArrayList(ResultSet resultSet)
@@ -96,13 +93,13 @@ public class UserReviewController extends UserReviewUiController{
         {
             setTableCells();
             userDataToShow.clear();
-            deleteSalesByDate();
+            deleteUserByDate();
         }else {
             System.out.println("error");
         }
     }
 
-    public void deleteSalesByDate()
+    public void deleteUserByDate()
     {
         String query = "delete from userreview where date = '"+date.getText()+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
@@ -111,16 +108,18 @@ public class UserReviewController extends UserReviewUiController{
 
     static  public String getLastEmployeeSSNFromUserReview(int ssn)
     {
-        System.out.println(ssn);
-        String position = "mostafa";
         String query = "select position from user where ssn = '"+ssn+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
-        System.out.println(position);
         ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
+        return getPositionOfUser(resultSet);
+    }
+
+    public static String getPositionOfUser(ResultSet resultSet)
+    {
+        String position = null;
         try {
             if (resultSet.next())
             {
-                System.out.println(resultSet.getString("position"));
                 position = resultSet.getString("position");
             }
         }catch (SQLException sqlException)

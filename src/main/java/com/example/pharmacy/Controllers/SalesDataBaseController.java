@@ -1,5 +1,6 @@
 package com.example.pharmacy.Controllers;
 import com.example.pharmacy.Calculaion.CalculateBill;
+import com.example.pharmacy.ControllerUi.SalesUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
 import com.example.pharmacy.Models.Product;
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class SalesDataBaseController extends SalesController{
+public class SalesDataBaseController extends SalesUi {
 
 
     public void getDataFromDataBase()
@@ -91,7 +92,7 @@ public class SalesDataBaseController extends SalesController{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         System.out.println(salesModel.getTapsNumber());
         String query = "insert into sales values('"+saleInformation.getCureCode()+"' , '"+saleInformation.getCureName()+"' , '"+salesModel.getAmount()+"' , '"+salesModel.getTapsNumber()+"' ,'"+saleInformation.getRetailPrice()+"' , '"+saleInformation.getTotalPrice()+"' , '"+ LocalDate.now().toString() +
-                "' , 1 , '"+saleCode+"')";
+                "' , 22 , '"+saleCode+"')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }

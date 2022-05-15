@@ -1,4 +1,5 @@
 package com.example.pharmacy.Controllers;
+import com.example.pharmacy.ControllerUi.SalesReviewUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
 import com.example.pharmacy.Models.SalesReviewModel;
@@ -6,7 +7,7 @@ import com.example.pharmacy.Models.SalesReviewModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SalesReviewDataBaseController extends SalesReviewController{
+public class SalesReviewDataBaseController extends SalesReviewUi {
 
      public void getSalesDataFromDataBase()
     {

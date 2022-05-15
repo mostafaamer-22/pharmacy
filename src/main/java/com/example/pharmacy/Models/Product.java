@@ -4,10 +4,10 @@ public class Product {
    private String CureName;
    private String CompanyName;
    private String DistributorName;
-   private int DistributorNumber;
+   private String DistributorNumber;
    private int Amount;
-   private String ExpireDate;
    private int TapsNumber;
+   private String ExpireDate;
    private int RetailPrice;
    private int TotalPrice;
    private int totalTapsNumber;
@@ -17,10 +17,10 @@ public class Product {
                    String CureName,
                    String CompanyName,
                    String DistributorName,
-                   int DistributorNumber,
+                   String DistributorNumber,
                    int Amount,
-                   String ExpireDate,
                    int TapsNumber,
+                   String ExpireDate,
                    int RetailPrice,
                    int TotalPrice,
                    int totalTapsNumber
@@ -85,11 +85,11 @@ public class Product {
         DistributorName = distributorName;
     }
 
-    public int getDistributorNumber() {
+    public String getDistributorNumber() {
         return DistributorNumber;
     }
 
-    public void setDistributorNumber(int distributorNumber) {
+    public void setDistributorNumber(String distributorNumber) {
         DistributorNumber = distributorNumber;
     }
 

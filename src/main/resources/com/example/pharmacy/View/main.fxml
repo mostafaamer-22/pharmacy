@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1263.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pharmacy.Controllers.MainController">
+   <children>
+      <BorderPane fx:id="mainPane" layoutX="-3.0" prefHeight="623.0" prefWidth="977.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="960.0" spacing="3.0" style="-fx-background-color: #483D8B;">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/capsule.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" prefHeight="26.0" prefWidth="78.0" text="kabsula" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Italic" size="21.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false"  prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" Home" textFill="WHITE" onAction="#handleLoadHomeScreen">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadNewProductScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" New Product" textFill="WHITE" fx:id="newProduct">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/new.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadUpdateDeleteScreen" prefHeight="59.0" prefWidth="134.0" selected="true" style="-fx-background-color: #00000000;" text=" Updata&amp;delete" textFill="WHITE" fx:id="updateAndDelete">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/update.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadSalesPropertyScreen" prefHeight="59.0" prefWidth="130.0" style="-fx-background-color: #00000000;" text=" Sales property" textFill="WHITE" fx:id="salesProperty">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/for-sale.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadSalesReviewScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" Sales review" textFill="WHITE" fx:id="salesReview">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/growth.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadAddUserScreen" prefHeight="59.0" prefWidth="131.0" style="-fx-background-color: #00000000;" text=" Add Employee" textFill="WHITE" fx:id="addEmployee">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/add-user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadUserReviewScreen" prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;" text=" User review" textFill="WHITE" fx:id="userReview">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/checklist.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="157.0" style="-fx-background-color: #00000000;" text=" Change Password" textFill="WHITE" onAction="#handleChangePasswordScreen" fx:id="changePassword">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/password.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#handleLoadLoginScreen" prefHeight="59.0" prefWidth="115.0" style="-fx-background-color: #00000000;" text="Login" textFill="WHITE" fx:id="Login">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/login.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" prefHeight="59.0" prefWidth="115.0" style="-fx-background-color: #00000000;" text="Logout" textFill="WHITE" onAction="#handleLogoutScreen" fx:id="Logout">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false"  prefHeight="59.0" prefWidth="122.0" style="-fx-background-color: #00000000;"  onAction="#handleRegisterScreen" text=" RegisterAdmin" textFill="WHITE" fx:id="Register">
+                     <font>
+                        <Font name="Candara Bold Italic" size="12.0" />
+                     </font>
+                  </ToggleButton>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <center>
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="368.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/Pharmacy.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="54.0" prefWidth="111.0" text="Kabsula" textFill="#473d8a" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold Italic" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

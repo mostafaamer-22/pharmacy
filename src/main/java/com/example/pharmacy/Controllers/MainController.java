@@ -1,17 +1,16 @@
 package com.example.pharmacy.Controllers;
+import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.FxmlLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
-import java.nio.Buffer;
-import java.util.ResourceBundle;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
 
 public class MainController implements Initializable{
 
@@ -22,42 +21,43 @@ public class MainController implements Initializable{
     private BorderPane mainPane;
 
     @FXML
-    private BorderPane logPane;
+    public ToggleButton newProduct;
 
     @FXML
-    private ToggleButton newProduct;
+    public ToggleButton updateAndDelete;
 
     @FXML
-    private ToggleButton updateAndDelete;
+    public ToggleButton salesProperty;
 
     @FXML
-    private ToggleButton salesProperty;
+    public ToggleButton salesReview;
 
     @FXML
-    private ToggleButton salesReview;
+    public ToggleButton addEmployee;
 
     @FXML
-    private ToggleButton addEmployee;
-
-    @FXML
-    private ToggleButton userReview;
+    public ToggleButton userReview;
 
     @FXML
     private ToggleButton changePassword;
 
 
-   @FXML
-   public void  handleLoadNewProductScreen(ActionEvent event){
-       try {
+    @FXML
+    private ToggleButton Register;
 
-          FxmlLoader loader = new FxmlLoader();
-           Pane view = loader.getView("NewProductFxml.fxml");
-           mainPane.setCenter(view);
-           System.out.println("success");
 
-       }catch (Exception e){
-          e.printStackTrace();
-       }
+    @FXML
+    public void  handleLoadNewProductScreen(){
+        try {
+
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("View/NewProductFxml.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("AddUser.fxml");
+            Pane view = loader.getView("View/AddUser.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -79,7 +79,7 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("UserReview.fxml");
+            Pane view = loader.getView("View/UserReview.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -93,7 +93,7 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("UpdateDelete.fxml");
+            Pane view = loader.getView("View/UpdateDelete.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -107,7 +107,7 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("Home.fxml");
+            Pane view = loader.getView("View/Home.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -121,7 +121,7 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("Login.fxml");
+            Pane view = loader.getView("View/Login.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -134,7 +134,7 @@ public class MainController implements Initializable{
     public void  handleLoadSalesPropertyScreen(ActionEvent event){
         try {
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("SalesPropertyFxml.fxml");
+            Pane view = loader.getView("View/SalesPropertyFxml.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -147,7 +147,7 @@ public class MainController implements Initializable{
     public void  handleLoadSalesReviewScreen(ActionEvent event){
         try {
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("SalesReview.fxml");
+            Pane view = loader.getView("View/SalesReview.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -161,7 +161,7 @@ public class MainController implements Initializable{
     public void  handleChangePasswordScreen(ActionEvent event){
         try {
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("changepassword.fxml");
+            Pane view = loader.getView("View/changepassword.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -175,7 +175,21 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("Logout.fxml");
+            Pane view = loader.getView("View/Logout.fxml");
+            mainPane.setCenter(view);
+            System.out.println("success");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void  handleRegisterScreen(ActionEvent event){
+        try {
+
+            FxmlLoader loader = new FxmlLoader();
+            Pane view = loader.getView("View/Register.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -189,7 +203,7 @@ public class MainController implements Initializable{
         try {
 
             FxmlLoader loader = new FxmlLoader();
-            Pane view = loader.getView("Home.fxml");
+            Pane view = loader.getView("View/Home.fxml");
             mainPane.setCenter(view);
             System.out.println("success");
 
@@ -207,12 +221,12 @@ public class MainController implements Initializable{
         salesProperty.setDisable(true);
         userReview.setDisable(true);
         changePassword.setDisable(true);
+
     }
 
     public void enableButtons(String position)
     {
-        System.out.println("hello");
-        if (position.equals("admin"))
+        if(position.equals("Admin"))
         {
             this.addEmployee.setDisable(false);
             this.updateAndDelete.setDisable(false);
@@ -220,20 +234,55 @@ public class MainController implements Initializable{
             this.salesReview.setDisable(false);
             this.salesProperty.setDisable(false);
             this.userReview.setDisable(false);
-            this.changePassword.setDisable(false);
         }else {
             this.updateAndDelete.setDisable(false);
             this.newProduct.setDisable(false);
             this.salesProperty.setDisable(false);
-            this.changePassword.setDisable(false);
         }
+        this.changePassword.setDisable(false);
+    }
+
+    public ArrayList<String> getLastUser()
+    {
+        String query = "select * from userreview";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        return getLastRecord(dataBaseManipulation.executeStatementSelect());
+    }
+
+    public ArrayList<String> getLastRecord(ResultSet resultSet)
+    {
+        ArrayList<String> informationAboutUser = new ArrayList<>();
+        try {
+            while (resultSet.next())
+            {
+                if (resultSet.isLast())
+                {
+                    informationAboutUser.add(resultSet.getString("status"));
+                    informationAboutUser.add(resultSet.getString("position"));
+                }
+            }
+        }catch (SQLException sqlException)
+        {
+            System.out.println(sqlException.getMessage());
+        }
+        return informationAboutUser;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         disableButtons();
+        if (!getLastUser().isEmpty())
+        {
+            if (getLastUser().get(0).equals("login"))
+            {
+                enableButtons(getLastUser().get(1));
+            }else {
+                disableButtons();
+            }
+        } else
+        {
+            disableButtons();
+        }
         instance = this;
     }
 }
-
-

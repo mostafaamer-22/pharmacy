@@ -50,6 +50,7 @@ public class DataBaseManipulation {
         return resultSet;
     }
 
+
     public ArrayList<Product> showData()
     {
         getDataFromDataBase();

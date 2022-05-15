@@ -1,14 +1,13 @@
 package com.example.pharmacy.Controllers;
-
+import com.example.pharmacy.ControllerUi.ChangePasswordUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
 import com.example.pharmacy.Models.ChangePasswordModel;
 import javafx.scene.control.Alert;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ChangePasswordDataBaseController extends ChangePasswordUiController{
+public class ChangePasswordDataBaseController extends ChangePasswordUi {
 
     public void changePassword()
     {

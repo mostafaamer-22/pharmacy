@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane   xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pharmacy.Controllers.MainController">
+   <center>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="368.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/Pharmacy.png"/>
+               </image>
+            </ImageView>
+            <Label prefHeight="54.0" prefWidth="111.0" text="Kabsula" textFill="#473d8a" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold Italic" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </center>
+
+</BorderPane>
