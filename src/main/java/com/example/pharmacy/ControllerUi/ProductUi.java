@@ -1,4 +1,5 @@
-package com.example.pharmacy.Controllers;
+package com.example.pharmacy.ControllerUi;
+import com.example.pharmacy.Controllers.ManipulationProduct;
 import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.Product;
 import javafx.collections.FXCollections;
@@ -10,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductController  implements Initializable {
+public class ProductUi implements Initializable {
 
     @FXML
     protected TextField CureCode;
@@ -75,16 +76,19 @@ public class ProductController  implements Initializable {
     @FXML
     protected TableColumn<?,?> columnTotalPrice;
 
+    @FXML
+    protected TableColumn<?,?> columnTotalTapsNumber;
+
     public  ObservableList<Product> data;
 
-    Product product = null;
+    public static Product product = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
             data = FXCollections.observableArrayList();
             setProductInCellTable();
-            ManipulationProductController.loadDataFromDatabase(data,table);
+            ManipulationProduct.loadProductsFromDatabase(data,table);
     }
 
 
@@ -117,6 +121,7 @@ public class ProductController  implements Initializable {
         columnTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("ExpireDate"));
         columnRetailPrice.setCellValueFactory(new  PropertyValueFactory<>("RetailPrice"));
         columnTotalPrice.setCellValueFactory(new  PropertyValueFactory<>("TotalPrice"));
+        columnTotalTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("totalTapsNumber"));
     }
 
     public void setManipulationProductInTextField() {

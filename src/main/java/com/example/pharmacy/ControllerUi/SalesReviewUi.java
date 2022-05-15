@@ -1,6 +1,7 @@
-package com.example.pharmacy.Controllers;
+package com.example.pharmacy.ControllerUi;
 
 
+import com.example.pharmacy.Controllers.MainController;
 import com.example.pharmacy.Models.SalesReviewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +17,7 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
-public class SalesReviewController extends MainController implements Initializable {
+public class SalesReviewUi extends MainController implements Initializable {
 
     @FXML
     public TextField date;

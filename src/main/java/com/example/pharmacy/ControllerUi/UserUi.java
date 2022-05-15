@@ -1,4 +1,5 @@
-package com.example.pharmacy.Controllers;
+package com.example.pharmacy.ControllerUi;
+import com.example.pharmacy.Controllers.ManipulationUserController;
 import com.example.pharmacy.Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +12,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class UserController implements Initializable {
+public class UserUi implements Initializable {
 
     @FXML
     protected TextField SSN;
@@ -85,11 +86,11 @@ public class UserController implements Initializable {
 
     ToggleGroup PositionGroup;
 
-    String Gender;
+    public String Gender;
 
-    String Position;
+    public String Position;
 
-    User user = null;
+    public static User user = null;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -101,7 +102,7 @@ public class UserController implements Initializable {
         Doctor.setToggleGroup(PositionGroup);
         data = FXCollections.observableArrayList();
         setUserInCellTable();
-        ManipulationUserController.loadDataFromDatabase(data,table);
+        ManipulationUserController.loadUsersFromDatabase(data,table);
 
     }
 

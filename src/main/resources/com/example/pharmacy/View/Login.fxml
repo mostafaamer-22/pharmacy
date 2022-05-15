@@ -18,7 +18,7 @@
             </font>
          </Label>
             <HBox alignment="CENTER">
-            <Label prefWidth="150.0" text="User name" textFill="#483D8B">
+            <Label prefWidth="150.0" text="SSN" textFill="#483D8B">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></Label>

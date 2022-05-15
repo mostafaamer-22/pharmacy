@@ -2,6 +2,7 @@ package com.example.pharmacy.Controllers;
 import com.example.pharmacy.Calculaion.CalculateBill;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
+import com.example.pharmacy.Models.Product;
 import com.example.pharmacy.Models.SalesModel;
 import javafx.scene.control.*;
 import java.sql.ResultSet;
@@ -15,17 +16,17 @@ public class SalesDataBaseController extends SalesController{
 
     public void getDataFromDataBase()
     {
-        ArrayList<SalesModel> listOfData = new ArrayList<>();
+        ArrayList<Product> listOfData = new ArrayList<>();
         SalesModel salesModel;
         salesModel = getDataFromUser();
         if (!cureCode.getText().isEmpty())
         {
-            listOfData = getCureDataFromDataBase(salesModel);
+            listOfData = getCureDataFromDataBase(salesModel.getCureCode());
             putDataToUser(listOfData);
-            if((salesModel.getAmount() <= listOfData.get(0).getAmount() && salesModel.getAmount() != 0) || (salesModel.getTapsNumber() <= listOfData.get(0).getTapsNumber() && salesModel.getTapsNumber() != 0))
+            if(checkTheStore(salesModel , listOfData))
             {
                 insertSales(listOfData.get(0) , getLastSaleCode() , salesModel);
-                updateAmountOfCure(listOfData.get(0).getAmount() - salesModel.getAmount() , listOfData.get(0).getCureCode());
+                updateAmountOfCure(salesModel , listOfData);
                 setTableCells();
                 salesDataToShow.clear();
                 getSalesDataFromDataBase(getLastSaleCode());
@@ -36,9 +37,29 @@ public class SalesDataBaseController extends SalesController{
         }
     }
 
-    public  void updateAmountOfCure(int amount, int cureCode)
+    public boolean checkTheStore(SalesModel salesModel , ArrayList<Product> salesModelArrayList)
     {
-        String query = "update product set amount = '"+amount+"' where cure_code = '"+cureCode+"'";
+        int totalTapsNumberNeeded = salesModel.getAmount() * salesModelArrayList.get(0).getTapsNumber() + salesModel.getTapsNumber();
+        if ((salesModel.getTapsNumber() < salesModelArrayList.get(0).getTapsNumber()) && (totalTapsNumberNeeded <= salesModelArrayList.get(0).getTotalTapsNumber()) && (salesModel.getTapsNumber() != 0 || salesModel.getAmount() != 0))
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public  void updateAmountOfCure(SalesModel salesModel,ArrayList<Product> productArrayList)
+    {
+        int newTotalTapsNumber = productArrayList.get(0).getTotalTapsNumber() - (salesModel.getAmount() * productArrayList.get(0).getTapsNumber() + salesModel.getTapsNumber());
+        int newAmount = productArrayList.get(0).getAmount() - (((productArrayList.get(0).getTotalTapsNumber() - newTotalTapsNumber) / productArrayList.get(0).getTapsNumber()) + 1);
+        if (newTotalTapsNumber % productArrayList.get(0).getTapsNumber() == 0)
+            newAmount = newTotalTapsNumber / productArrayList.get(0).getTapsNumber();
+        if(newAmount < 0)
+        {
+            newAmount = 0;
+        }
+        String query = "update product set amount = '"+newAmount+"' , total_taps_number = '"+newTotalTapsNumber+"' where cure_code = '"+productArrayList.get(0).getCureCode()+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
@@ -65,26 +86,26 @@ public class SalesDataBaseController extends SalesController{
         alert.show();
     }
 
-    private  void insertSales(SalesModel saleInformation, int saleCode, SalesModel salesModel)
+    private  void insertSales(Product saleInformation, int saleCode, SalesModel salesModel)
     {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         System.out.println(salesModel.getTapsNumber());
         String query = "insert into sales values('"+saleInformation.getCureCode()+"' , '"+saleInformation.getCureName()+"' , '"+salesModel.getAmount()+"' , '"+salesModel.getTapsNumber()+"' ,'"+saleInformation.getRetailPrice()+"' , '"+saleInformation.getTotalPrice()+"' , '"+ LocalDate.now().toString() +
-        "' , 1002 , '"+saleCode+"' , '"+saleInformation.getTapsNumber()+"')";
+                "' , 1 , '"+saleCode+"')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
 
-    public  ArrayList getCureDataFromDataBase(SalesModel salesModel)
+    static public  ArrayList<Product> getCureDataFromDataBase(int condition)
     {
-        String query = "select * from product where cure_code = '"+salesModel.getCureCode()+"'";
+        String query = "select * from product where cure_code = '"+condition+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
-        ArrayList listOfData = dataBaseManipulation.showData();
+        ArrayList<Product> listOfData = dataBaseManipulation.showData();
         if (listOfData != null)
         {
             return listOfData;
         }else {
-            showAlertError();
+            //showAlertError();
             return null;
         }
     }
@@ -117,10 +138,19 @@ public class SalesDataBaseController extends SalesController{
 
     public  void calculateBill(int condition)
     {
-        String query = "select total_price , taps_number , amount , taps_Number_Per_Cure from sales where sale_code = '"+condition+"'";
+        String query = "select total_price , taps_number , cure_code ,amount from sales where sale_code = '"+condition+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
-        showBillAlertAndPrice(CalculateBill.calculateBill(resultSet));
+        try {
+            resultSet.next();
+            ArrayList<Product> productArrayList = SalesDataBaseController.getCureDataFromDataBase(resultSet.getInt("cure_code"));
+            int tapsNumberPerCure = productArrayList.get(0).getTapsNumber();
+            resultSet = dataBaseManipulation.executeStatementSelect();
+            showBillAlertAndPrice(CalculateBill.calculateBill(resultSet  , tapsNumberPerCure));
+        }catch (SQLException sqlException)
+        {
+            Exception.printingSqlErrors(sqlException);
+        }
     }
 
     public  void showBillAlertAndPrice(int billValue)
@@ -136,9 +166,9 @@ public class SalesDataBaseController extends SalesController{
         if (amount.getText() != null && cureCode.getText() != null && saleCode.getText() != null)
         {
             SalesModel salesModel  = new SalesModel();
-            ArrayList<SalesModel> listOfCureData = new ArrayList<>();
+            ArrayList<Product> listOfCureData = new ArrayList<>();
             salesModel.setCureCode(Integer.parseInt(cureCode.getText()));
-            listOfCureData = getCureDataFromDataBase(salesModel);
+            listOfCureData = getCureDataFromDataBase(salesModel.getCureCode());
             if(listOfCureData.get(0).getAmount() >= Integer.parseInt(amount.getText()))
                 updateDataOfBill();
         }else {

@@ -56,7 +56,7 @@
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/Delete_Data .png" />
+                                <Image url="@../icons/Delete_Data .png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -68,7 +68,7 @@
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/Refresh_Data .png" />
+                                <Image url="@../icons/Refresh_Data .png" />
                             </image>
                         </ImageView>
                     </graphic>

@@ -2,11 +2,21 @@ package com.example.pharmacy.Controllers;
 import com.example.pharmacy.FxmlLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
-public class MainController {
+import java.net.URL;
+import java.nio.Buffer;
+import java.util.ResourceBundle;
 
+public class MainController implements Initializable{
+
+
+    public static MainController instance;
 
     @FXML
     private BorderPane mainPane;
@@ -14,6 +24,26 @@ public class MainController {
     @FXML
     private BorderPane logPane;
 
+    @FXML
+    private ToggleButton newProduct;
+
+    @FXML
+    private ToggleButton updateAndDelete;
+
+    @FXML
+    private ToggleButton salesProperty;
+
+    @FXML
+    private ToggleButton salesReview;
+
+    @FXML
+    private ToggleButton addEmployee;
+
+    @FXML
+    private ToggleButton userReview;
+
+    @FXML
+    private ToggleButton changePassword;
 
 
    @FXML
@@ -73,7 +103,7 @@ public class MainController {
     }
 
     @FXML
-    public void  handleLoadHomeScreen(ActionEvent event){
+    public void  handleLoadHomeScreen(){
         try {
 
             FxmlLoader loader = new FxmlLoader();
@@ -155,12 +185,12 @@ public class MainController {
     }
 
     @FXML
-    public void  handleCancelScreen(ActionEvent event){
+    public void  handleCancelScreen(){
         try {
 
             FxmlLoader loader = new FxmlLoader();
             Pane view = loader.getView("Home.fxml");
-            logPane.setCenter(view);
+            mainPane.setCenter(view);
             System.out.println("success");
 
         }catch (Exception e){
@@ -168,8 +198,42 @@ public class MainController {
         }
     }
 
+    public void disableButtons()
+    {
+        addEmployee.setDisable(true);
+        updateAndDelete.setDisable(true);
+        newProduct.setDisable(true);
+        salesReview.setDisable(true);
+        salesProperty.setDisable(true);
+        userReview.setDisable(true);
+        changePassword.setDisable(true);
+    }
 
+    public void enableButtons(String position)
+    {
+        System.out.println("hello");
+        if (position.equals("admin"))
+        {
+            this.addEmployee.setDisable(false);
+            this.updateAndDelete.setDisable(false);
+            this.newProduct.setDisable(false);
+            this.salesReview.setDisable(false);
+            this.salesProperty.setDisable(false);
+            this.userReview.setDisable(false);
+            this.changePassword.setDisable(false);
+        }else {
+            this.updateAndDelete.setDisable(false);
+            this.newProduct.setDisable(false);
+            this.salesProperty.setDisable(false);
+            this.changePassword.setDisable(false);
+        }
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        disableButtons();
+        instance = this;
+    }
 }
 
 
