@@ -6,8 +6,10 @@ module com.example.pharmacy {
 
     opens com.example.pharmacy to javafx.fxml;
     opens com.example.pharmacy.Models to javafx.base,javafx.fxml;
-    exports com.example.pharmacy ;
+    exports com.example.pharmacy;
     exports com.example.pharmacy.Controllers;
     exports com.example.pharmacy.Models;
     opens com.example.pharmacy.Controllers to javafx.fxml;
+    exports com.example.pharmacy.ControllerUi;
+    opens com.example.pharmacy.ControllerUi to javafx.fxml;
 }

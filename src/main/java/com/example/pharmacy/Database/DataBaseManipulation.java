@@ -1,6 +1,7 @@
 package com.example.pharmacy.Database;
 import com.example.pharmacy.Exception.Exception;
 import com.example.pharmacy.HandlerEvent;
+import com.example.pharmacy.Models.Product;
 import com.example.pharmacy.Models.SalesModel;
 import javafx.collections.ObservableList;
 
@@ -13,7 +14,7 @@ public class DataBaseManipulation {
     final String queryStatement;
     public ResultSet resultSet;
     ObservableList<SalesModel> salesDataToShow;
-    ArrayList listOfShownData = new ArrayList();
+    ArrayList<Product> listOfShownData = new ArrayList<Product>();
     public DataBaseManipulation (String query)
     {
         queryStatement = query;
@@ -49,31 +50,33 @@ public class DataBaseManipulation {
         return resultSet;
     }
 
-    public ArrayList showData()
+
+    public ArrayList<Product> showData()
     {
         getDataFromDataBase();
         addItemToArrayList(makeObjectFromSalesModel());
         return listOfShownData;
     }
 
-    public ArrayList addItemToArrayList(SalesModel item)
+    public ArrayList<Product> addItemToArrayList(Product item)
     {
         listOfShownData.add(item);
         return listOfShownData;
     }
 
-    public SalesModel makeObjectFromSalesModel()
+    public Product makeObjectFromSalesModel()
     {
-        SalesModel salesModel = new SalesModel();
+        Product salesProduct = new Product();
         try {
             resultSet.next();
-            salesModel.setCureName(resultSet.getString("cure_name"));
-            salesModel.setTotalPrice(resultSet.getInt("total_price"));
-            salesModel.setRetailPrice(resultSet.getInt("retail_price"));
-            salesModel.setCureCode(resultSet.getInt("cure_code"));
-            salesModel.setAmount(resultSet.getInt("amount"));
-            salesModel.setTapsNumber(resultSet.getInt("taps_number"));
-            return salesModel;
+            salesProduct.setCureName(resultSet.getString("cure_name"));
+            salesProduct.setTotalPrice(resultSet.getInt("total_price"));
+            salesProduct.setRetailPrice(resultSet.getInt("retail_price"));
+            salesProduct.setCureCode(resultSet.getInt("cure_code"));
+            salesProduct.setAmount(resultSet.getInt("amount"));
+            salesProduct.setTapsNumber(resultSet.getInt("taps_number"));
+            salesProduct.setTotalTapsNumber(resultSet.getInt("total_taps_number"));
+            return salesProduct;
         }catch (SQLException sqlException)
         {
             Exception.printingSqlErrors(sqlException);
