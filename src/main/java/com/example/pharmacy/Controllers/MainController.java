@@ -1,5 +1,4 @@
 package com.example.pharmacy.Controllers;
-import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.FxmlLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +7,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 public class MainController implements Initializable{
