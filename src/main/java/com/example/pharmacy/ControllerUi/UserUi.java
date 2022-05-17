@@ -1,5 +1,7 @@
 package com.example.pharmacy.ControllerUi;
 import com.example.pharmacy.Controllers.ManipulationUserController;
+import com.example.pharmacy.Interfaces.ClearTextField;
+import com.example.pharmacy.Interfaces.SetData;
 import com.example.pharmacy.Models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +14,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class UserUi implements Initializable {
+public class UserUi implements Initializable , SetData , ClearTextField {
 
     @FXML
     protected TextField SSN;
@@ -91,6 +93,7 @@ public class UserUi implements Initializable {
     public String Position;
 
     public static User user = null;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -101,8 +104,8 @@ public class UserUi implements Initializable {
         Employee.setToggleGroup(PositionGroup);
         Doctor.setToggleGroup(PositionGroup);
         data = FXCollections.observableArrayList();
-        setUserInCellTable();
-        ManipulationUserController.loadUsersFromDatabase(data,table);
+        SetDataInTable();
+        ManipulationUserController.loadUsersToTable(data,table);
 
     }
 
@@ -129,19 +132,6 @@ public class UserUi implements Initializable {
             Position = "Employee";
         }
 
-    }
-
-    public void setUserInCellTable()
-    {
-        columnSSN.setCellValueFactory(new PropertyValueFactory<>("SSN"));
-        columnFName.setCellValueFactory(new  PropertyValueFactory<>("FName"));
-        columnLName.setCellValueFactory(new  PropertyValueFactory<>("LName"));
-        columnDateOfBirth.setCellValueFactory(new  PropertyValueFactory<>("DateOfBirth"));
-        columnAddress.setCellValueFactory(new  PropertyValueFactory<>("Address"));
-        columnContact.setCellValueFactory(new  PropertyValueFactory<>("Contact"));
-        columnGender.setCellValueFactory(new  PropertyValueFactory<>("Gender"));
-        columnPosition.setCellValueFactory(new  PropertyValueFactory<>("Position"));
-        columnSalary.setCellValueFactory(new  PropertyValueFactory<>("Salary"));
     }
 
     public void setManipulationUserInTextField() {
@@ -179,9 +169,22 @@ public class UserUi implements Initializable {
         }
     }
 
-    @FXML
-    public void clearTextField()
-    {
+
+    @Override
+    public void SetDataInTable() {
+        columnSSN.setCellValueFactory(new PropertyValueFactory<>("SSN"));
+        columnFName.setCellValueFactory(new  PropertyValueFactory<>("FName"));
+        columnLName.setCellValueFactory(new  PropertyValueFactory<>("LName"));
+        columnDateOfBirth.setCellValueFactory(new  PropertyValueFactory<>("DateOfBirth"));
+        columnAddress.setCellValueFactory(new  PropertyValueFactory<>("Address"));
+        columnContact.setCellValueFactory(new  PropertyValueFactory<>("Contact"));
+        columnGender.setCellValueFactory(new  PropertyValueFactory<>("Gender"));
+        columnPosition.setCellValueFactory(new  PropertyValueFactory<>("Position"));
+        columnSalary.setCellValueFactory(new  PropertyValueFactory<>("Salary"));
+    }
+
+    @Override
+    public void ClearInTextField() {
         SSN.clear();
         FName.clear();
         LName.clear();
@@ -194,5 +197,4 @@ public class UserUi implements Initializable {
         Doctor.setSelected(false);
         Employee.setSelected(false);
     }
-
 }

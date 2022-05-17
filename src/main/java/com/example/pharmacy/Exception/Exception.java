@@ -8,8 +8,4 @@ public  class Exception extends Throwable {
         System.out.println(exception.toString());
     }
 
-    static public void printingGeneralErrors(Exception exception)
-    {
-        System.out.println(exception.toString());
-    }
 }

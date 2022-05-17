@@ -204,7 +204,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Clear Cure" textFill="WHITE" prefWidth="200" prefHeight="100" onAction="#clearNewProductTextField">
+                  <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Clear Cure" textFill="WHITE" prefWidth="200" prefHeight="100" onAction="#ClearInTextField">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />
                      </font>

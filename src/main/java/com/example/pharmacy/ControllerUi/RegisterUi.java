@@ -1,6 +1,5 @@
 package com.example.pharmacy.ControllerUi;
 import com.example.pharmacy.Controllers.MainController;
-import com.example.pharmacy.Interfaces.LaunchConstraines;
 import com.example.pharmacy.Models.Admin;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +11,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class RegisterUi   extends  MainController implements Initializable , LaunchConstraines {
+public class RegisterUi   extends  MainController implements Initializable {
 
     @FXML
     protected TextField SSN;
@@ -81,14 +80,5 @@ public class RegisterUi   extends  MainController implements Initializable , Lau
     }
 
 
-    @Override
-    public void enableButtons() {
-        addEmployee.setDisable(false);
-        updateAndDelete.setDisable(false);
-        newProduct.setDisable(false);
-        salesReview.setDisable(false);
-        salesProperty.setDisable(false);
-        userReview.setDisable(false);
-    }
 
 }

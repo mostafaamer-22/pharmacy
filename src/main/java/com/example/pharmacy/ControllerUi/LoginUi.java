@@ -2,6 +2,7 @@ package com.example.pharmacy.ControllerUi;
 
 
 import com.example.pharmacy.Database.DataBaseManipulation;
+import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.LoginModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,8 +39,7 @@ public class LoginUi implements Initializable {
             loginModel.setPassword(password.getText());
             return loginModel;
         }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.show();
+            HandlerEvent.showAlertError();
             return null;
         }
     }

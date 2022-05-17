@@ -1,5 +1,8 @@
 package com.example.pharmacy.ControllerUi;
 import com.example.pharmacy.Controllers.MainController;
+import com.example.pharmacy.HandlerEvent;
+import com.example.pharmacy.Interfaces.ClearTextField;
+import com.example.pharmacy.Interfaces.SetData;
 import com.example.pharmacy.Models.Product;
 import com.example.pharmacy.Models.SalesModel;
 import javafx.collections.FXCollections;
@@ -13,34 +16,34 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
-public class SalesUi extends MainController implements Initializable{
+public class SalesUi extends MainController implements Initializable , SetData , ClearTextField {
 
     @FXML
     public TextField cureCode;
 
     @FXML
-     public TextField cureName;
+    public TextField cureName;
 
     @FXML
-     public TextField amount;
+    public TextField amount;
 
     @FXML
-     public TextField tapsNumber;
+    public TextField tapsNumber;
 
     @FXML
-     public TextField retailPrice;
+    public TextField retailPrice;
 
     @FXML
-     public TextField totalPrice;
+    public TextField totalPrice;
 
     @FXML
-   public TextField saleCode;
+    public TextField saleCode;
 
     @FXML
-   public TableView<SalesModel> tableSales;
+    public TableView<SalesModel> tableSales;
 
     @FXML
-     public TableColumn<? , ?> cureCodeColumn;
+    public TableColumn<? , ?> cureCodeColumn;
 
     @FXML
     public TableColumn<? , ?> cureNameColumn;
@@ -49,13 +52,16 @@ public class SalesUi extends MainController implements Initializable{
     public TableColumn<? , ?> amountColumn;
 
     @FXML
-   public TableColumn<? , ?> tapsNumberColumn;
+    public TableColumn<? , ?> tapsNumberColumn;
 
     @FXML
-   public TableColumn<? , ?> retailPriceColumn;
+    public TableColumn<? , ?> retailPriceColumn;
 
     @FXML
-  public TableColumn<? , ?>  totalPriceColumn;
+    public TableColumn<? , ?>  totalPriceColumn;
+
+    @FXML
+    public TableColumn<? , ?> billCodeColumn;
 
     public ObservableList<SalesModel> salesDataToShow;
 
@@ -63,58 +69,65 @@ public class SalesUi extends MainController implements Initializable{
     public Label billPrice;
 
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("hello");
         salesDataToShow = FXCollections.observableArrayList();
-        setTableCells();
+        SetDataInTable();
     }
 
 
-    public void clearTextFieldDataAndTableData()
-    {
-        cureCode.clear();
-        cureName.clear();
-        amount.clear();
-        tapsNumber.clear();
-        retailPrice.clear();
-        totalPrice.clear();
-        salesDataToShow.clear();
-    }
-
-    public  void setTableCells()
-    {
-        cureCodeColumn.setCellValueFactory(new PropertyValueFactory<>("cureCode"));
-        cureNameColumn.setCellValueFactory(new PropertyValueFactory<>("cureName"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        tapsNumberColumn.setCellValueFactory(new PropertyValueFactory<>("tapsNumber"));
-        retailPriceColumn.setCellValueFactory(new PropertyValueFactory<>("retailPrice"));
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-    }
-
-
-
-     public  SalesModel getDataFromUser()
+    public  SalesModel getDataFromUser()
     {
         SalesModel saleInformation = new SalesModel();
-        if (!cureCode.getText().isEmpty())
+        if(validateCureCode())
         {
             saleInformation.setCureCode(Integer.parseInt(cureCode.getText()));
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.show();
+            saleInformation.amount = setAmount(saleInformation).getAmount();
+            saleInformation.tapsNumber = setTapsNumber(saleInformation).getTapsNumber();
         }
-        if (!amount.getText().isEmpty())
-            saleInformation.setAmount(Integer.parseInt(amount.getText()));
-        else saleInformation.setAmount(0);
-        if (!tapsNumber.getText().isEmpty())
-        {
-            saleInformation.setTapsNumber(Integer.parseInt(tapsNumber.getText()));
-        } else
-            saleInformation.setTapsNumber(0);
         return saleInformation;
     }
 
+    public SalesModel setTapsNumber(SalesModel saleInformation)
+    {
+        if (!tapsNumber.getText().isEmpty())
+        {
+            saleInformation.setTapsNumber(Integer.parseInt(tapsNumber.getText()));
+
+        } else
+        {
+            saleInformation.setTapsNumber(0);
+
+        }
+        return saleInformation;
+    }
+
+    public boolean validateCureCode()
+    {
+        if (!cureCode.getText().isEmpty())
+        {
+            return true;
+        }else {
+            HandlerEvent.showAlertError();
+            return false;
+        }
+    }
+
+    public SalesModel setAmount(SalesModel saleInformation)
+    {
+        if (!amount.getText().isEmpty())
+        {
+            saleInformation.setAmount(Integer.parseInt(amount.getText()));
+
+        }
+        else {
+            saleInformation.setAmount(0);
+
+        }
+        return saleInformation;
+    }
 
     public  void putDataToUser(ArrayList<Product> list)
     {
@@ -126,5 +139,25 @@ public class SalesUi extends MainController implements Initializable{
     }
 
 
+    @Override
+    public void SetDataInTable() {
+        cureCodeColumn.setCellValueFactory(new PropertyValueFactory<>("cureCode"));
+        cureNameColumn.setCellValueFactory(new PropertyValueFactory<>("cureName"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        tapsNumberColumn.setCellValueFactory(new PropertyValueFactory<>("tapsNumber"));
+        retailPriceColumn.setCellValueFactory(new PropertyValueFactory<>("retailPrice"));
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        billCodeColumn.setCellValueFactory(new PropertyValueFactory<>("billCode"));
+    }
 
+    @Override
+    public void ClearInTextField() {
+        cureCode.clear();
+        cureName.clear();
+        amount.clear();
+        tapsNumber.clear();
+        retailPrice.clear();
+        totalPrice.clear();
+        salesDataToShow.clear();
+    }
 }

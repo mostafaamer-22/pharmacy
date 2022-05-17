@@ -14,17 +14,57 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="643.0" prefWidth="1025.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"  fx:controller="com.example.pharmacy.Controllers.SalesDataBaseController" >
+<AnchorPane prefHeight="643.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pharmacy.Controllers.SalesDataBaseController">
     <children>
         <BorderPane layoutX="-1.0" layoutY="1.0" minWidth="-Infinity" prefHeight="506.0" prefWidth="360.0" style="-fx-background-color: #483D8B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <HBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
                     <children>
-                        <Label text="Add Cure" textFill="WHITE">
+                        <Label prefWidth="400.0" text="Add Cure" textFill="WHITE">
                             <font>
                                 <Font name="System Bold Italic" size="14.0" />
                             </font>
                         </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="311.0">
+                            <children>
+                                <Label prefWidth="120.0" text="Bill code" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold Italic" size="14.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="saleCode" prefWidth="168.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#handleUpdateDataOfBill" prefHeight="39.0" prefWidth="147.0" style="-fx-background-color: #483D8B;" text="Update Data" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold Italic" size="15.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/Refresh_Data .png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="43.0" prefWidth="156.0" style="-fx-background-color: #483D8B;" text="Delete Bill" textFill="WHITE" onAction="#handleDeleteDataOfBill">
+                            <font>
+                                <Font name="System Bold Italic" size="15.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/delete.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </Button>
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -41,7 +81,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="26.0" prefWidth="168.0" fx:id="cureCode"/>
+                                <TextField fx:id="cureCode" prefHeight="26.0" prefWidth="168.0" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -54,7 +94,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" fx:id="cureName" />
+                                <TextField fx:id="cureName" prefWidth="168.0" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -67,7 +107,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" fx:id="amount"/>
+                                <TextField fx:id="amount" prefWidth="168.0" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -80,7 +120,7 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" fx:id="tapsNumber"/>
+                                <TextField fx:id="tapsNumber" prefWidth="168.0" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -96,7 +136,7 @@
                                         <Insets />
                                     </HBox.margin>
                                 </Label>
-                                <TextField prefWidth="168.0" fx:id="retailPrice"/>
+                                <TextField fx:id="retailPrice" prefWidth="168.0" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -109,60 +149,30 @@
                                         <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField prefWidth="168.0" fx:id="totalPrice"/>
+                                <TextField fx:id="totalPrice" prefWidth="168.0" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
                         </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="441.0">
-                     <children>
-                        <Label prefWidth="165.0" text="Delete Bill With code" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold Italic" size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField prefWidth="168.0" fx:id="saleCode"/>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets top="70.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Delete Bill" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold Italic" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Button>
                     </children>
                 </VBox>
             </left>
             <center>
                 <HBox prefHeight="602.0" prefWidth="411.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                     <children>
-                        <TableView HBox.hgrow="ALWAYS" fx:id="tableSales">
+                        <TableView fx:id="tableSales" HBox.hgrow="ALWAYS">
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                             <columns>
-                                <TableColumn prefWidth="75.0" text="Cure Code"  fx:id="cureCodeColumn"/>
-                                <TableColumn prefWidth="75.0" text="Cure Name" fx:id="cureNameColumn" />
-                                <TableColumn prefWidth="75.0" text="Amount" fx:id="amountColumn"/>
-                                <TableColumn prefWidth="75.0" text="Taps Number" fx:id="tapsNumberColumn"/>
-                                <TableColumn prefWidth="75.0" text="Retail price" fx:id="retailPriceColumn"/>
-                                <TableColumn prefWidth="75.0" text="Total price" fx:id="totalPriceColumn"/>
+                                <TableColumn fx:id="cureCodeColumn" prefWidth="75.0" text="Cure Code" />
+                                <TableColumn fx:id="billCodeColumn" prefWidth="75.0" text="Bill code" />
+                                <TableColumn fx:id="cureNameColumn" prefWidth="75.0" text="Cure Name" />
+                                <TableColumn fx:id="amountColumn" prefWidth="75.0" text="Amount" />
+                                <TableColumn fx:id="tapsNumberColumn" prefWidth="75.0" text="Taps Number" />
+                                <TableColumn fx:id="retailPriceColumn" prefWidth="75.0" text="Retail price" />
+                                <TableColumn fx:id="totalPriceColumn" prefWidth="75.0" text="Total price" />
                             </columns>
                         </TableView>
                     </children>
@@ -171,7 +181,7 @@
             <bottom>
                 <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="1026.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label prefWidth="150.0" text="Bill Price: " fx:id="billPrice" textFill="WHITE">
+                        <Label fx:id="billPrice" prefHeight="20.0" prefWidth="327.0" text="Bill Price: " textFill="WHITE">
                             <padding>
                                 <Insets left="10.0" />
                             </padding>
@@ -179,7 +189,7 @@
                                 <Font name="System Bold Italic" size="14.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Calculate Bill" textFill="WHITE" onAction="#calculateBillToUser">
+                        <Button mnemonicParsing="false" onAction="#calculateBillToUser" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Calculate Bill" textFill="WHITE">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -194,7 +204,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Add To Bill" textFill="WHITE" onAction="#getDataFromDataBase">
+                        <Button mnemonicParsing="false" onAction="#getDataFromDataBase" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Add To Bill" textFill="WHITE">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -209,7 +219,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="New Bill" textFill="WHITE" onAction="#changeSaleCode">
+                        <Button mnemonicParsing="false" onAction="#newBill" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="New Bill" textFill="WHITE">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -224,7 +234,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Clear" textFill="WHITE" onAction="#clearTextFieldDataAndTableData">
+                        <Button mnemonicParsing="false" onAction="#ClearInTextField" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text="Clear" textFill="WHITE">
                             <font>
                                 <Font name="System Bold Italic" size="15.0" />
                             </font>
@@ -235,33 +245,6 @@
                                     </image>
                                 </ImageView>
                             </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #483D8B;" text="Update Data" textFill="WHITE" prefWidth="200" prefHeight="100" onAction="#handleUpdateDataOfBill">
-                            <font>
-                                <Font name="System Bold Italic" size="15.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icons/Refresh_Data .png"/>
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #483D8B;" text=" Delete Item" textFill="WHITE" onAction="#handleDeleteDataOfBill">
-                            <font>
-                                <Font name="System Bold Italic" size="15.0" />
-                            </font>
-                            <graphic>
-                                <ImageView fitHeight="29.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icons/delete.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                                <Insets left="50.0" />
-                            </padding>
                         </Button>
                     </children>
                     <padding>

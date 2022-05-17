@@ -1,4 +1,5 @@
 package com.example.pharmacy.ControllerUi;
+import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.ChangePasswordModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -26,8 +27,7 @@ public class ChangePasswordUi {
             changePasswordModel.setNewPassword(newPassword.getText());
             return changePasswordModel;
         }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.show();
+            HandlerEvent.showAlertError();
             return null;
         }
     }

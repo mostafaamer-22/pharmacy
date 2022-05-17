@@ -1,6 +1,8 @@
 package com.example.pharmacy.ControllerUi;
 import com.example.pharmacy.Controllers.ManipulationProduct;
 import com.example.pharmacy.HandlerEvent;
+import com.example.pharmacy.Interfaces.ClearTextField;
+import com.example.pharmacy.Interfaces.SetData;
 import com.example.pharmacy.Models.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProductUi implements Initializable {
+public class ProductUi implements Initializable , SetData , ClearTextField {
 
     @FXML
     protected TextField CureCode;
@@ -87,42 +89,10 @@ public class ProductUi implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
             data = FXCollections.observableArrayList();
-            setProductInCellTable();
+            SetDataInTable();
             ManipulationProduct.loadProductsFromDatabase(data,table);
     }
 
-
-    @FXML
-    public  void clearNewProductTextField()
-    {
-        CureCode.clear();
-        CureName.clear();
-        CompanyName.clear();
-        DistributorName.clear();
-        DistributorNumber.clear();
-        TapsNumber.clear();
-        TotalPrice.clear();
-        RetailPrice.clear();
-        Amount.clear();
-        ExpireDate.getEditor().clear();
-        HandlerEvent.showAlertSuccess();
-    }
-
-    @FXML
-    public void setProductInCellTable()
-    {
-        columnCureCode.setCellValueFactory(new PropertyValueFactory<>("CureCode"));
-        columnCureName.setCellValueFactory(new  PropertyValueFactory<>("CureName"));
-        columnCompanyName.setCellValueFactory(new  PropertyValueFactory<>("CompanyName"));
-        columnDistributorName.setCellValueFactory(new  PropertyValueFactory<>("DistributorName"));
-        columnDistributorNumber.setCellValueFactory(new  PropertyValueFactory<>("DistributorNumber"));
-        columnAmount.setCellValueFactory(new  PropertyValueFactory<>("Amount"));
-        columnExpireDate.setCellValueFactory(new  PropertyValueFactory<>("TapsNumber"));
-        columnTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("ExpireDate"));
-        columnRetailPrice.setCellValueFactory(new  PropertyValueFactory<>("RetailPrice"));
-        columnTotalPrice.setCellValueFactory(new  PropertyValueFactory<>("TotalPrice"));
-        columnTotalTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("totalTapsNumber"));
-    }
 
     public void setManipulationProductInTextField() {
         CureName.setText(product.getCureName());
@@ -152,4 +122,33 @@ public class ProductUi implements Initializable {
     }
 
 
+    @Override
+    public void SetDataInTable() {
+        columnCureCode.setCellValueFactory(new PropertyValueFactory<>("CureCode"));
+        columnCureName.setCellValueFactory(new  PropertyValueFactory<>("CureName"));
+        columnCompanyName.setCellValueFactory(new  PropertyValueFactory<>("CompanyName"));
+        columnDistributorName.setCellValueFactory(new  PropertyValueFactory<>("DistributorName"));
+        columnDistributorNumber.setCellValueFactory(new  PropertyValueFactory<>("DistributorNumber"));
+        columnAmount.setCellValueFactory(new  PropertyValueFactory<>("Amount"));
+        columnTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("TapsNumber"));
+        columnExpireDate.setCellValueFactory(new  PropertyValueFactory<>("ExpireDate"));
+        columnRetailPrice.setCellValueFactory(new  PropertyValueFactory<>("RetailPrice"));
+        columnTotalPrice.setCellValueFactory(new  PropertyValueFactory<>("TotalPrice"));
+        columnTotalTapsNumber.setCellValueFactory(new  PropertyValueFactory<>("totalTapsNumber"));
+    }
+
+    @Override
+    public void ClearInTextField() {
+        CureCode.clear();
+        CureName.clear();
+        CompanyName.clear();
+        DistributorName.clear();
+        DistributorNumber.clear();
+        TapsNumber.clear();
+        TotalPrice.clear();
+        RetailPrice.clear();
+        Amount.clear();
+        ExpireDate.getEditor().clear();
+        HandlerEvent.showAlertSuccess();
+    }
 }

@@ -117,7 +117,7 @@ public class MainController implements Initializable{
     }
 
     @FXML
-    public void  handleLoadLoginScreen(ActionEvent event){
+    public void  handleLoadLoginScreen(){
         try {
 
             FxmlLoader loader = new FxmlLoader();
@@ -222,6 +222,7 @@ public class MainController implements Initializable{
         userReview.setDisable(true);
         changePassword.setDisable(true);
 
+
     }
 
     public void enableButtons(String position)
@@ -239,43 +240,20 @@ public class MainController implements Initializable{
             this.newProduct.setDisable(false);
             this.salesProperty.setDisable(false);
         }
+        this.Register.setDisable(true);
         this.changePassword.setDisable(false);
     }
 
-    public ArrayList<String> getLastUser()
-    {
-        String query = "select * from userreview";
-        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
-        return getLastRecord(dataBaseManipulation.executeStatementSelect());
-    }
-
-    public ArrayList<String> getLastRecord(ResultSet resultSet)
-    {
-        ArrayList<String> informationAboutUser = new ArrayList<>();
-        try {
-            while (resultSet.next())
-            {
-                if (resultSet.isLast())
-                {
-                    informationAboutUser.add(resultSet.getString("status"));
-                    informationAboutUser.add(resultSet.getString("position"));
-                }
-            }
-        }catch (SQLException sqlException)
-        {
-            System.out.println(sqlException.getMessage());
-        }
-        return informationAboutUser;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ManipulationUserController.loadUsersFromDataBase();
         disableButtons();
-        if (!getLastUser().isEmpty())
+        if (!UserReviewController.getLastUser().isEmpty())
         {
-            if (getLastUser().get(0).equals("login"))
+            if (UserReviewController.getLastUser().get(0).equals("login"))
             {
-                enableButtons(getLastUser().get(1));
+                enableButtons(UserReviewController.getLastUser().get(1));
             }else {
                 disableButtons();
             }

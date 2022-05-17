@@ -2,6 +2,8 @@ package com.example.pharmacy.Controllers;
 import com.example.pharmacy.ControllerUi.UserUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.HandlerEvent;
+import com.example.pharmacy.Interfaces.ResetDataTable;
+import com.example.pharmacy.Models.ChangePasswordModel;
 import com.example.pharmacy.Models.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,13 +11,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class ManipulationUserController extends UserUi {
+public class ManipulationUserController extends UserUi implements ResetDataTable {
+
 
   @FXML
   TextField Search;
 
-  static ResultSet resultSet;
+ public static ResultSet resultSet;
+
+ public  static  ResultSet UsersData;
 
     public static User CreateObjectFromUser(ResultSet resultSet)
     {
@@ -45,19 +51,24 @@ public class ManipulationUserController extends UserUi {
         String sql = "insert into user values('" + user.getSSN() + "' , '" + user.getFName() + "' , '" + user.getLName() + "' , '" + user.getPassword() + "' ,'" + user.getDateOfBirth() + "' , '" + user.getAddress() + "' , '" + user.getContact() + "', '" + user.getGender() + "' , '" + user.getPosition() + "', '" + user.getSalary() + "')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(sql);
         dataBaseManipulation.manipulateDataBase();
-        setUserInCellTable();
-        loadUsersFromDatabase(data,table);
+        SetDataInTable();
+        loadUsersToTable(data,table);
 
     }
 
+   static  public  ResultSet loadUsersFromDataBase()
+   {
+       String sql ="Select * from user";
+       DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(sql);
+       UsersData = dataBaseManipulation.executeStatementSelect();
+       return UsersData;
+    }
 
-    static public void loadUsersFromDatabase(ObservableList<User> data, TableView<User> table)
+    static public void loadUsersToTable(ObservableList<User> data, TableView<User> table)
     {
         data.clear();
         try {
-            String sql ="Select * from user";
-            DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(sql);
-            resultSet = dataBaseManipulation.executeStatementSelect();
+              resultSet = loadUsersFromDataBase();
             while (resultSet.next())
             {
                 data.add(CreateObjectFromUser(resultSet));
@@ -109,15 +120,41 @@ public class ManipulationUserController extends UserUi {
         String sql = "delete from user where ssn = '"+Search.getText()+"'";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(sql);
         dataBaseManipulation.manipulateDataBase();
-        setUserInCellTable();
-        loadUsersFromDatabase(data,table);
+        SetDataInTable();
+        loadUsersToTable(data,table);
     }
 
     @FXML
-    public void Reset()
+    @Override
+    public void ResetTable()
     {
-        setUserInCellTable();
-        loadUsersFromDatabase(data,table);
+        SetDataInTable();
+        loadUsersToTable(data,table);
+    }
+
+    static public ChangePasswordModel getEmployeeData(ChangePasswordModel changePasswordModel)
+    {
+        ChangePasswordModel userInfo = new ChangePasswordModel();
+        String query = "select * from user where ssn = '"+changePasswordModel.getEmployeeSSN()+"'";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
+        try {
+            if (resultSet.next())
+            {
+                userInfo.setPassword(resultSet.getString("password"));
+            }
+        }catch (SQLException sqlException)
+        {
+            System.out.println(sqlException.getMessage());
+        }
+        return userInfo;
+    }
+
+    static public ArrayList<String> getNameAndPosition(int ssn)
+    {
+        String query = "select fname , position from user where ssn = '"+ssn+"'";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        return UserReviewController.appendFirstNameAndPosition(dataBaseManipulation.executeStatementSelect());
     }
 
 }

@@ -2,15 +2,24 @@ package com.example.pharmacy.Controllers;
 import com.example.pharmacy.ControllerUi.UserReviewUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
+import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.UserReviewModel;
+import javafx.collections.FXCollections;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class UserReviewController extends UserReviewUi {
+public class UserReviewController extends UserReviewUi implements Initializable {
+
+
+    static String position;
 
     static public void validateUserName(int ssn)
     {
@@ -18,31 +27,29 @@ public class UserReviewController extends UserReviewUi {
         {
             insertUserInUserReviewTable(ssn);
         }else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.show();
+            HandlerEvent.showAlertError();
         }
     }
 
     static public void insertUserInUserReviewTable(int ssn)
     {
         String login = "login";
-        ArrayList<String> info = new ArrayList<String>();
+        ArrayList<String> info;
         info = getUserData(ssn);
-        String query = "insert into userreview values('"+ssn+"' , '"+info.get(0)+"' , '"+login+"' , '"+ LocalDate.now().toString()+"' , '"+ LocalTime.now()+"' , '"+info.get(1)+"')";
+        String query = "insert into userreview values('"+ssn+"' , '"+info.get(0)+"' , '"+login+"' , '"+ LocalDate.now() +"' , '"+ LocalTime.now()+"' , '"+info.get(1)+"')";
         DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
         dataBaseManipulation.manipulateDataBase();
     }
 
     static  public ArrayList<String> getUserData(int ssn)
     {
-        String query = "select fname , position from user where ssn = '"+ssn+"'";
-        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
-        return appendFirstNameAndPosition(dataBaseManipulation.executeStatementSelect());
+        return  ManipulationUserController.getNameAndPosition(ssn);
     }
 
     static public ArrayList<String> appendFirstNameAndPosition(ResultSet resultSet)
     {
-        ArrayList<String> userInfo = new ArrayList<String>();
+        ArrayList<String> userInfo;
+        userInfo = new ArrayList<>();
         try {
             if (resultSet.next())
             {
@@ -58,7 +65,7 @@ public class UserReviewController extends UserReviewUi {
 
     public void getUsers()
     {
-        setTableCells();
+        SetDataInTable();
         if (!date.getText().isEmpty())
             getUsersFromDataBaseByDate();
     }
@@ -91,7 +98,7 @@ public class UserReviewController extends UserReviewUi {
     {
         if (!date.getText().isEmpty())
         {
-            setTableCells();
+            SetDataInTable();
             userDataToShow.clear();
             deleteUserByDate();
         }else {
@@ -116,7 +123,7 @@ public class UserReviewController extends UserReviewUi {
 
     public static String getPositionOfUser(ResultSet resultSet)
     {
-        String position = null;
+        position = null;
         try {
             if (resultSet.next())
             {
@@ -129,4 +136,81 @@ public class UserReviewController extends UserReviewUi {
         return position;
     }
 
+    static  public void insertUserAfterLoginOrLogout(ResultSet resultSet)
+    {
+        try {
+            String query = "insert into userreview values('"+resultSet.getString("ssn")+"' , '"+resultSet.getString("fname")+"' , 'logout' , '"+ LocalDate.now()+"' , '"+ LocalTime.now()+"' , '"+resultSet.getString("position")+"')";
+            DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+            dataBaseManipulation.manipulateDataBase();
+        }catch (SQLException sqlException)
+        {
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
+    static public int getLastEmployeeSSN()
+    {
+        String query = "select ssn from userreview";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
+        return extractEmployeeSSNFromResultSet(resultSet);
+    }
+
+    static public int extractEmployeeSSNFromResultSet(ResultSet resultSet)
+    {
+        try {
+            while (resultSet.next())
+            {
+                if(resultSet.isLast())
+                    return resultSet.getInt("ssn");
+            }
+        }catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        userDataToShow = FXCollections.observableArrayList();
+        SetDataInTable();
+        getAllUserReviewData();
+    }
+
+    public void getAllUserReviewData()
+    {
+        String query = "select * from userreview";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        ResultSet resultSet = dataBaseManipulation.executeStatementSelect();
+        addUsersToArrayList(resultSet);
+        if (!userDataToShow.isEmpty())
+            tableUsers.setItems(userDataToShow);
+    }
+
+    static public ArrayList<String> getLastUser()
+    {
+        String query = "select * from userreview";
+        DataBaseManipulation dataBaseManipulation = new DataBaseManipulation(query);
+        return getLastRecordInUserReview(dataBaseManipulation.executeStatementSelect());
+    }
+
+    static public ArrayList<String> getLastRecordInUserReview(ResultSet resultSet)
+    {
+        ArrayList<String> informationAboutUser = new ArrayList<>();
+        try {
+            while (resultSet.next())
+            {
+                if (resultSet.isLast())
+                {
+                    informationAboutUser.add(resultSet.getString("status"));
+                    informationAboutUser.add(resultSet.getString("position"));
+                }
+            }
+        }catch (SQLException sqlException)
+        {
+            System.out.println(sqlException.getMessage());
+        }
+        return informationAboutUser;
+    }
 }

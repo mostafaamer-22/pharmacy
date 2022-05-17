@@ -1,13 +1,8 @@
 package com.example.pharmacy.Calculaion;
-
-import com.example.pharmacy.Controllers.SalesDataBaseController;
 import com.example.pharmacy.Exception.Exception;
-import com.example.pharmacy.Models.Product;
-import com.example.pharmacy.Models.SalesModel;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 public class CalculateBill {
 

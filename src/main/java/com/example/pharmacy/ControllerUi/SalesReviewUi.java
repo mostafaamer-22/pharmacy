@@ -1,23 +1,19 @@
 package com.example.pharmacy.ControllerUi;
-
-
 import com.example.pharmacy.Controllers.MainController;
+import com.example.pharmacy.Interfaces.SetData;
 import com.example.pharmacy.Models.SalesReviewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
-public class SalesReviewUi extends MainController implements Initializable {
+public class SalesReviewUi extends MainController implements Initializable , SetData {
 
     @FXML
     public TextField date;
@@ -56,19 +52,13 @@ public class SalesReviewUi extends MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         salesDataToShow = FXCollections.observableArrayList();
-        setTableCells();
+        SetDataInTable();
     }
 
 
 
-    public void showAlert()
-    {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.show();
-    }
-
-    public void setTableCells()
-    {
+    @Override
+    public void SetDataInTable() {
         cureCodeColumn.setCellValueFactory(new PropertyValueFactory<>("cureCode"));
         cureNameColumn.setCellValueFactory(new PropertyValueFactory<>("cureName"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -78,5 +68,4 @@ public class SalesReviewUi extends MainController implements Initializable {
         totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         employeeSSNColumn.setCellValueFactory(new PropertyValueFactory<>("employeeSSN"));
     }
-
 }

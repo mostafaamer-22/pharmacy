@@ -1,12 +1,9 @@
 package com.example.pharmacy.Controllers;
-
 import com.example.pharmacy.ControllerUi.LoginUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
 import com.example.pharmacy.Exception.Exception;
 import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.LoginModel;
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -25,10 +22,7 @@ public class LoginDataBaseController extends LoginUi {
         try {
             if (resultSet.next())
             {
-                int ssn = resultSet.getInt("ssn");
-                UserReviewController.validateUserName(ssn);
-                String position = UserReviewController.getLastEmployeeSSNFromUserReview(ssn);
-                MainController.instance.enableButtons(position);
+                validateToLogin(resultSet);
             }else
             {
                 HandlerEvent.showAlertNotFound();
@@ -39,9 +33,23 @@ public class LoginDataBaseController extends LoginUi {
         }
     }
 
+    public void validateToLogin(ResultSet resultSet)
+    {
+        try {
+            int ssn = resultSet.getInt("ssn");
+            UserReviewController.validateUserName(ssn);
+            String position = UserReviewController.getLastEmployeeSSNFromUserReview(ssn);
+            MainController.instance.enableButtons(position);
+        }catch (SQLException sqlException)
+        {
+            System.out.println(sqlException.getMessage());
+        }
+    }
+
     public void userLogin()
     {
         getUsersFromDataBase(getDataFromUser());
+        MainController.instance.handleLoadNewProductScreen();
     }
 
 }
