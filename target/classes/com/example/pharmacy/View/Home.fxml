@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:id="HomePane"
+            fx:controller="com.example.pharmacy.Controllers.MainController">
+    <center>
+        <VBox alignment="CENTER" >
+            <children>
+                <ImageView fitHeight="368.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@icons/Pharmacy.png"/>
+                    </image>
+                </ImageView>
+                <Label prefHeight="54.0" prefWidth="111.0" text="Kabsula" textFill="#473d8a">
+                    <font>
+                        <Font name="System Bold Italic" size="28.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
