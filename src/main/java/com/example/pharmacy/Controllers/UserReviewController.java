@@ -6,8 +6,6 @@ import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.UserReviewModel;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 public class UserReviewController extends UserReviewUi implements Initializable {
 

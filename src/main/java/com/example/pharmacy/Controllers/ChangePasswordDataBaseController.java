@@ -1,8 +1,8 @@
 package com.example.pharmacy.Controllers;
 import com.example.pharmacy.ControllerUi.ChangePasswordUi;
 import com.example.pharmacy.Database.DataBaseManipulation;
+import com.example.pharmacy.HandlerEvent;
 import com.example.pharmacy.Models.ChangePasswordModel;
-import javafx.scene.control.Alert;
 
 public class ChangePasswordDataBaseController extends ChangePasswordUi {
 
@@ -14,8 +14,7 @@ public class ChangePasswordDataBaseController extends ChangePasswordUi {
         {
             modifyUserPassword(userInfoFromUser);
         }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.show();
+            HandlerEvent.showAlertError();
         }
     }
 
