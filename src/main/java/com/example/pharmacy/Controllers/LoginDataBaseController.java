@@ -49,7 +49,6 @@ public class LoginDataBaseController extends LoginUi {
     public void userLogin()
     {
         getUsersFromDataBase(getDataFromUser());
-        MainController.instance.handleLoadNewProductScreen();
     }
 
 }
